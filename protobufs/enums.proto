@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+enum Rating {
+    ZERO = 0;
+    ONE = 1;
+    TWO = 2;
+    THREE = 3;
+    FOUR = 4;
+    FIVE = 5;
+}
+
+enum Genre {
+    POP = 0;
+    ROCK = 1;
+    FOLK = 2;
+}
+
+enum PricingType {
+    PER_HOUR = 0;
+    PER_GIG = 1;
+    PER_SONG = 2;
+}
+
+enum Status{
+    COMPLETED = 0;
+    PENDING = 1;
+    DECLINED = 2;
+    CANCELLED = 3;
+}

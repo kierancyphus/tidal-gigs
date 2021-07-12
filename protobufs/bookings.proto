@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "enums.proto";
+import "assets.proto";
+
+message Booker {
+    int32 booking_id = 1;
+    Location location = 2;
+    Price final_price = 3;
+    int32 booker_id = 4;
+    int32 artist_id = 5;
+    Status status = 6;
+}
+

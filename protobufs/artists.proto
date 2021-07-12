@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "enums.proto";
+import "assets.proto";
+
+message ArtistId {
+    int32 user_id = 1;
+}
+
+message Artist {
+    int32 user_id = 1;
+    string user_name = 2;
+    Location location = 3;
+    Price price = 4;
+    ContactInfo contact_info = 5;
+    Rating rating = 6;
+    Genre genre = 7;
+    int32 booking_count = 8;
+}
+
+service Artists {
+    rpc GetArtistName(ArtistId) returns (Artist);
+}

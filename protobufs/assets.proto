@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "enums.proto";
+
+message ContactInfo{
+    string email = 1;
+    string phone_number = 2;
+    string website_url = 3;
+}
+
+message Location{
+    string location_name = 1;
+    float longitude = 2;
+    float latitude = 3;
+    int32 range = 4; //Distance away from location they are willing to travel (in metres)
+}
+
+message Price{
+    int32 price = 1; // in cents
+    PricingType type = 2;
+}
