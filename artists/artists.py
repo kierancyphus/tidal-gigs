@@ -5,13 +5,13 @@ import pymysql
 import grpc
 from grpc_interceptor import ExceptionToStatusInterceptor
 from grpc_interceptor.exceptions import NotFound
-from artists_pb2 import ArtistRequest, ArtistResponse, ArtistLocationResponse
+from artists_pb2 import ArtistRequest, ArtistResponse, ArtistLocationResponse, ArtistPriceResponse, ArtistContactInfoResponse
 import artists_pb2_grpc
 
 class ArtistsService(artists_pb2_grpc.ArtistsServicer):
     """Service thing for artists"""
-    def connect(self):
-        return pymysql.connect(
+    def __init__(self):
+        self.conn = pymysql.connect(
             host='localhost',
             user='user',
             password="password",
@@ -20,29 +20,29 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
 
     def GetArtist(self, request, context):
         #Initialize
-        artist_response = ArtistResponse()
-        conn = self.connect()
-        cur = conn.cursor()
+        response = ArtistResponse()
+        cur = self.conn.cursor()
 
         #Update artist fields
         cur.execute(f"select * from artist where id={request.user_id}")
         artist = cur.fetchone()
-        artist_response.user_id = artist[0]
-        artist_response.user_name = artist[1]
-        artist_response.range = artist[3]
-        artist_response.rating = artist[6]
-        artist_response.genre = artist[7]
-        artist_response.booking_count = artist[8]
-
-        #Close connection and return
-        conn.close()
-        return artist_response
+        response.user_id = artist[0]
+        response.user_name = artist[1]
+        print(type(self.GetArtistLocation(request, None).location))
+        print(type(response.location))
+        response.location = self.GetArtistLocation(request, None).location
+        response.range = artist[3]
+        # response.price = self.GetArtistPrice(request, None).price
+        # response.contact_info = self.GetArtistContactInfo(request, None).contact_info
+        response.rating = artist[6]
+        response.genre = artist[7]
+        response.booking_count = artist[8]
+        return response
 
     def GetArtistLocation(self, request, context):
         #Initialize
         response = ArtistLocationResponse()
-        conn = self.connect()
-        cur = conn.cursor()
+        cur = self.conn.cursor()
 
         # Update fields
         cur.execute(f"select location.name,\
@@ -54,8 +54,38 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
         response.location.name = location[0]
         response.location.longitude = location[1]
         response.location.latitude = location[2]
-        #Close connection and return
-        conn.close()
+        return response
+
+    def GetArtistPrice(self, request, context):
+        # Initialize
+        response = ArtistPriceResponse()
+        cur = self.conn.cursor()
+
+        # Update fields
+        cur.execute(f"select price.price,\
+                             price.pricing_type\
+                             from (artist JOIN price ON artist.price_id = price.id)\
+                             where artist.id={request.user_id}")
+        price = cur.fetchone()
+        response.price.price = price[0]
+        response.price.type = price[1]
+        return response
+
+    def GetArtistContactInfo(self, request, context):
+        #Initialize
+        response = ArtistContactInfoResponse()
+        cur = self.conn.cursor()
+
+        # Update fields
+        cur.execute(f"select contact_info.email,\
+                             contact_info.phone,\
+                             contact_info.website\
+                             from (artist JOIN contact_info ON artist.contact_info_id = contact_info.id)\
+                             where artist.id={request.user_id}")
+        price = cur.fetchone()
+        response.contact_info.email = price[0]
+        response.contact_info.phone_number = price[1]
+        response.contact_info.website_url = price[2]
         return response
 
 def serve():

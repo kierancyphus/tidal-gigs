@@ -23,7 +23,18 @@ message ArtistLocationResponse {
     Location location = 1;
 }
 
+message ArtistPriceResponse {
+    Price price = 1;
+}
+
+message ArtistContactInfoResponse {
+    ContactInfo contact_info = 1;
+}
+
+
 service Artists {
     rpc GetArtist(ArtistRequest) returns (ArtistResponse);
     rpc GetArtistLocation(ArtistRequest) returns (ArtistLocationResponse);
+    rpc GetArtistPrice(ArtistRequest) returns (ArtistPriceResponse);
+    rpc GetArtistContactInfo(ArtistRequest) returns (ArtistContactInfoResponse);
 }
