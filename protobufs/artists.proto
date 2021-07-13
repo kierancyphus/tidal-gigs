@@ -3,11 +3,11 @@ syntax = "proto3";
 import "enums.proto";
 import "assets.proto";
 
-message ArtistId {
+message ArtistRequest {
     int32 user_id = 1;
 }
 
-message Artist {
+message ArtistResponse {
     int32 user_id = 1;
     string user_name = 2;
     Location location = 3;
@@ -19,6 +19,11 @@ message Artist {
     int32 booking_count = 9;
 }
 
+message ArtistLocationResponse {
+    Location location = 1;
+}
+
 service Artists {
-    rpc GetArtistName(ArtistId) returns (Artist);
+    rpc GetArtist(ArtistRequest) returns (ArtistResponse);
+    rpc GetArtistLocation(ArtistRequest) returns (ArtistLocationResponse);
 }
