@@ -3,7 +3,7 @@ syntax = "proto3";
 import "enums.proto";
 import "assets.proto";
 
-message Booker {
+message Booking {
     int32 booking_id = 1;
     Location location = 2;
     Price final_price = 3;
