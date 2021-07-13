@@ -11,4 +11,3 @@ message Booking {
     int32 artist_id = 5;
     Status status = 6;
 }
-

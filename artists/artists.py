@@ -28,12 +28,10 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
         artist = cur.fetchone()
         response.user_id = artist[0]
         response.user_name = artist[1]
-        print(type(self.GetArtistLocation(request, None).location))
-        print(type(response.location))
-        response.location = self.GetArtistLocation(request, None).location
+        response.location.CopyFrom(self.GetArtistLocation(request, None).location)
         response.range = artist[3]
-        # response.price = self.GetArtistPrice(request, None).price
-        # response.contact_info = self.GetArtistContactInfo(request, None).contact_info
+        response.price.CopyFrom(self.GetArtistPrice(request, None).price)
+        response.contact_info.CopyFrom(self.GetArtistContactInfo(request, None).contact_info)
         response.rating = artist[6]
         response.genre = artist[7]
         response.booking_count = artist[8]
@@ -87,6 +85,7 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
         response.contact_info.phone_number = price[1]
         response.contact_info.website_url = price[2]
         return response
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
