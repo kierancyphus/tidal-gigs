@@ -1,27 +1,21 @@
 USE mysql;
-CREATE DATABASE IF NOT EXISTS tidalsurfartist;
-USE tidalsurfartist;
+CREATE DATABASE IF NOT EXISTS tidalsurfbooker;
+USE tidalsurfbooker;
 
 CREATE USER IF NOT EXISTS 'user'@'localhost';
-GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfartist.* TO 'user'@'localhost';
+GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfbooker.* TO 'user'@'localhost';
 
 ALTER USER 'user'@'localhost' IDENTIFIED BY 'password';
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS artist;
-DROP TABLE IF EXISTS location;
-DROP TABLE IF EXISTS price;
-DROP TABLE IF EXISTS contact_info;
-SET FOREIGN_KEY_CHECKS=1;
 
-CREATE TABLE IF NOT EXISTS  artist(
+DROP TABLE IF EXISTS booker;
+
+CREATE TABLE IF NOT EXISTS  booker(
 id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(100) NOT NULL,
 location_id INTEGER NOT NULL UNIQUE,
-location_range INTEGER NOT NULL,
-price_id INTEGER NOT NULL UNIQUE,
+asking_price_id INTEGER NOT NULL UNIQUE,
 contact_info_id INTEGER NOT NULL UNIQUE,
 rating INTEGER NOT NULL,
-genre INTEGER NOT NULL,
 booking_count INTEGER NOT NULL
 );
 
@@ -30,14 +24,14 @@ id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(100) NOT NULL,
 longitude FLOAT,
 latitude FLOAT,
-FOREIGN KEY (id) REFERENCES artist(location_id)
+FOREIGN KEY (id) REFERENCES booker(location_id)
 );
 
 CREATE TABLE IF NOT EXISTS price(
 id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 price INTEGER NOT NULL, -- in cents
 pricing_type INTEGER NOT NULL,
-FOREIGN KEY (id) REFERENCES artist(price_id)
+FOREIGN KEY (id) REFERENCES booker(asking_price_id)
 );
 
 CREATE TABLE IF NOT EXISTS contact_info(
@@ -45,5 +39,5 @@ id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 email VARCHAR(50),
 phone VARCHAR(20),
 website VARCHAR(20),
-FOREIGN KEY (id) REFERENCES artist(contact_info_id)
+FOREIGN KEY (id) REFERENCES booker(contact_info_id)
 );

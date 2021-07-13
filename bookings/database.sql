@@ -1,0 +1,35 @@
+USE mysql;
+CREATE DATABASE IF NOT EXISTS tidalsurfbooking;
+USE tidalsurfbooking;
+
+CREATE USER IF NOT EXISTS 'user'@'localhost';
+GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfbooking.* TO 'user'@'localhost';
+
+ALTER USER 'user'@'localhost' IDENTIFIED BY 'password';
+
+DROP TABLE IF EXISTS booking;
+
+CREATE TABLE IF NOT EXISTS booking(
+id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+location_id INTEGER NOT NULL UNIQUE,
+final_price_id INTEGER NOT NULL UNIQUE,
+booker_id INTEGER NOT NULL,
+artist_id INTEGER NOT NULL,
+status INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS location(
+id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+longitude FLOAT,
+latitude FLOAT,
+FOREIGN KEY (id) REFERENCES booking(location_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS price(
+id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+price INTEGER NOT NULL,
+pricing_type INTEGER NOT NULL,
+FOREIGN KEY (id) REFERENCES booking(final_price_id)
+);

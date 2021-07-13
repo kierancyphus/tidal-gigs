@@ -1,17 +1,13 @@
-INSERT INTO artist (id,
+INSERT INTO booker (id,
                     name,
                     location_id,
-                    location_range,
-                    price_id,
+                    asking_price_id,
                     contact_info_id,
                     rating,
-                    genre,
                     booking_count)
 VALUES (
     1,
-    "Jay-z!",
-    1,
-    1,
+    "Johnny",
     1,
     1,
     1,
@@ -45,7 +41,7 @@ INSERT INTO contact_info (id,
                     website)
 VALUES (
     1,
-    "jayz@tidal.com",
+    "jye@squareup.com",
     "129389812649",
-    "jay.tidal.com"
+    "tidalsurf.com"
 );
