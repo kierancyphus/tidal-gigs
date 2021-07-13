@@ -5,7 +5,14 @@ import pymysql
 import grpc
 from grpc_interceptor import ExceptionToStatusInterceptor
 from grpc_interceptor.exceptions import NotFound
-from artists_pb2 import ArtistRequest, ArtistResponse, ArtistLocationResponse, ArtistPriceResponse, ArtistContactInfoResponse
+from assets_pb2 import Price, ContactInfo
+from artists_pb2 import (ArtistRequest,
+                         ArtistResponse,
+                         ArtistLocationResponse,
+                         ArtistPriceResponse,
+                         ArtistContactInfoResponse,
+                         ArtistListResponse
+                         AddArtistResponse)
 import artists_pb2_grpc
 
 class ArtistsService(artists_pb2_grpc.ArtistsServicer):
@@ -28,63 +35,53 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
         artist = cur.fetchone()
         response.user_id = artist[0]
         response.user_name = artist[1]
-        response.location.CopyFrom(self.GetArtistLocation(request, None).location)
-        response.range = artist[3]
-        response.price.CopyFrom(self.GetArtistPrice(request, None).price)
-        response.contact_info.CopyFrom(self.GetArtistContactInfo(request, None).contact_info)
-        response.rating = artist[6]
-        response.genre = artist[7]
-        response.booking_count = artist[8]
+        response.city = artist[2]
+        response.price.price = artist[3]
+        response.price.type = artist[4]
+        response.contact_info.email = artist[5]
+        response.contact_info.phone_number = artist[6]
+        response.contact_info.website_url = artist[7]
+        response.rating = artist[8]
+        response.genre = artist[9]
+        response.booking_count = artist[10]
         return response
 
-    def GetArtistLocation(self, request, context):
-        #Initialize
-        response = ArtistLocationResponse()
-        cur = self.conn.cursor()
-
-        # Update fields
-        cur.execute(f"select location.name,\
-                             location.longitude,\
-                             location.latitude\
-                             from (artist JOIN location ON artist.location_id = location.id)\
-                             where artist.id={request.user_id}")
-        location = cur.fetchone()
-        response.location.name = location[0]
-        response.location.longitude = location[1]
-        response.location.latitude = location[2]
-        return response
-
-    def GetArtistPrice(self, request, context):
+    def AddArtist(self, request, context):
         # Initialize
-        response = ArtistPriceResponse()
+        response = AddArtistResponse()
+        cur = self.conn.cursor()
+
+        # Insert Data
+        cur.execute(f"INSERT INTO artist (name,\
+                                        location_range,\
+                                        rating,\
+                                        genre,\
+                                        booking_count)\
+                        VALUES('{request.user_name}',\
+                                {request.range},\
+                                {request.rating},\
+                                {request.genre},\
+                                {request.booking_count});")
+        response.response = 1
+        return response
+
+
+    def GetNearbyArtists(self, request, context):
+        """Find artists who live in same location based on name.
+        TODO: Make this use distance or a categorical"""
+        # Initialize
+        response = ArtistListResponse()
         cur = self.conn.cursor()
 
         # Update fields
-        cur.execute(f"select price.price,\
-                             price.pricing_type\
-                             from (artist JOIN price ON artist.price_id = price.id)\
-                             where artist.id={request.user_id}")
-        price = cur.fetchone()
-        response.price.price = price[0]
-        response.price.type = price[1]
+        cur.execute(f"select artist.id \
+                            from (artist JOIN location ON artist.location_id = location.id)\
+                            where location.name = '{request.location.name}'")
+        artists = cur.fetchall()
+        for artist in artists:
+            response.nearby_artists.append(self.GetArtist(ArtistRequest(user_id=artist[0]), None))
         return response
 
-    def GetArtistContactInfo(self, request, context):
-        #Initialize
-        response = ArtistContactInfoResponse()
-        cur = self.conn.cursor()
-
-        # Update fields
-        cur.execute(f"select contact_info.email,\
-                             contact_info.phone,\
-                             contact_info.website\
-                             from (artist JOIN contact_info ON artist.contact_info_id = contact_info.id)\
-                             where artist.id={request.user_id}")
-        price = cur.fetchone()
-        response.contact_info.email = price[0]
-        response.contact_info.phone_number = price[1]
-        response.contact_info.website_url = price[2]
-        return response
 
 
 def serve():

@@ -8,12 +8,6 @@ message ContactInfo{
     string website_url = 3;
 }
 
-message Location{
-    string name = 1;
-    float longitude = 2;
-    float latitude = 3;
-}
-
 message Price{
     int32 price = 1; // in cents
     PricingType type = 2;

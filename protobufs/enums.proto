@@ -1,18 +1,19 @@
 syntax = "proto3";
 
 enum Rating {
-    ZERO = 0;
-    ONE = 1;
-    TWO = 2;
-    THREE = 3;
-    FOUR = 4;
-    FIVE = 5;
+    ONE = 0;
+    TWO = 1;
+    THREE = 2;
+    FOUR = 3;
+    FIVE = 4;
 }
 
 enum Genre {
     POP = 0;
-    ROCK = 1;
-    FOLK = 2;
+    INDIE = 2;
+    HIPHOP = 3;
+    ELECTRONIC = 4;
+    RNB = 5;
 }
 
 enum PricingType {
@@ -21,9 +22,17 @@ enum PricingType {
     PER_SONG = 2;
 }
 
-enum Status{
+enum Status {
     COMPLETED = 0;
     PENDING = 1;
     DECLINED = 2;
     CANCELLED = 3;
+}
+
+enum City{
+    TORONTO = 0;
+    BROOKLYN = 1;
+    HONOLULU = 2;
+    ATLANTA = 3;
+    LA = 4;
 }
