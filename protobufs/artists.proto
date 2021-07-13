@@ -11,11 +11,12 @@ message Artist {
     int32 user_id = 1;
     string user_name = 2;
     Location location = 3;
-    Price price = 4;
-    ContactInfo contact_info = 5;
-    Rating rating = 6;
-    Genre genre = 7;
-    int32 booking_count = 8;
+    int32 range = 4; //Distance away from location they are willing to travel (in metres)
+    Price price = 5;
+    ContactInfo contact_info = 6;
+    Rating rating = 7;
+    Genre genre = 8;
+    int32 booking_count = 9;
 }
 
 service Artists {

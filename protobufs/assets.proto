@@ -12,7 +12,6 @@ message Location{
     string location_name = 1;
     float longitude = 2;
     float latitude = 3;
-    int32 range = 4; //Distance away from location they are willing to travel (in metres)
 }
 
 message Price{
