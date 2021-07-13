@@ -1,4 +1,7 @@
 #!/bin/bash
+rm */*_pb2.py
+rm */*_grpc.py
+
 python -m grpc_tools.protoc -I protobufs --python_out=artists --grpc_python_out=artists protobufs/assets.proto
 python -m grpc_tools.protoc -I protobufs --python_out=artists --grpc_python_out=artists protobufs/enums.proto
 python -m grpc_tools.protoc -I protobufs --python_out=artists --grpc_python_out=artists protobufs/artists.proto
