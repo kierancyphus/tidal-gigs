@@ -1,0 +1,1 @@
+env FLASK_APP=artists.py python -m flask run
