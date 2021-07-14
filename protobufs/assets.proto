@@ -1,14 +1,7 @@
 syntax = "proto3";
 
-import "enums.proto";
-
 message ContactInfo{
     string email = 1;
-    string phone_number = 2;
-    string website_url = 3;
-}
-
-message Price{
-    int32 price = 1; // in cents
-    PricingType type = 2;
+    string phone = 2;
+    string website = 3;
 }

@@ -4,51 +4,44 @@ import "enums.proto";
 import "assets.proto";
 
 message ArtistRequest {
-    int32 user_id = 1;
+    int32 id = 1;
 }
 
-message ArtistResponse {
-    int32 user_id = 1;
-    string user_name = 2;
-    int32 city = 3;
-    int32 range = 4; //Distance away from location they are willing to travel (in metres)
-    Price price = 5;
-    ContactInfo contact_info = 6;
-    Rating rating = 7;
-    Genre genre = 8;
-    int32 booking_count = 9;
-}
-
-message ArtistLocationResponse {
-    int32 city = 1;
-}
-
-message ArtistPriceResponse {
-    Price price = 1;
-}
-
-message ArtistContactInfoResponse {
-    ContactInfo contact_info = 1;
-}
-
-message NearbyArtistsRequest {
-    Location location = 1;
-    int32 max_artists = 2;
-}
-
-message ArtistListResponse {
-    repeated ArtistResponse nearby_artists = 1;
-}
-
-message AddArtistRequest {
-    string user_name = 1;
-    Location location = 2;
-    int32 range = 3; //Distance away from location they are willing to travel (in metres)
-    Price price = 4;
+message Artist {
+    int32 id = 1;
+    string name = 2;
+    City city = 3;
+    int32 price = 4;
     ContactInfo contact_info = 5;
     Rating rating = 6;
     Genre genre = 7;
     int32 booking_count = 8;
+    ArtistType type = 9;
+}
+
+message ArtistResponse{
+    Artist artist = 1;
+}
+
+
+message NearbyArtistsRequest {
+    City city = 1;
+    int32 max_artists = 2;
+}
+
+message ArtistListResponse {
+    repeated Artist artists = 1;
+}
+
+message AddArtistRequest {
+    string name = 1;
+    City city = 2;
+    int32 price = 3;
+    ContactInfo contact_info = 4;
+    Rating rating = 5;
+    Genre genre = 6;
+    int32 booking_count = 7;
+    ArtistType type = 8;
 }
 
 message AddArtistResponse {
@@ -57,9 +50,6 @@ message AddArtistResponse {
 
 service Artists {
     rpc GetArtist(ArtistRequest) returns (ArtistResponse);
-    rpc GetArtistLocation(ArtistRequest) returns (ArtistLocationResponse);
-    rpc GetArtistPrice(ArtistRequest) returns (ArtistPriceResponse);
-    rpc GetArtistContactInfo(ArtistRequest) returns (ArtistContactInfoResponse);
     rpc AddArtist(AddArtistRequest) returns (AddArtistResponse);
     rpc GetNearbyArtists(NearbyArtistsRequest) returns (ArtistListResponse); //Main method for applying all filters
 }

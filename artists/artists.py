@@ -5,13 +5,9 @@ import pymysql
 import grpc
 from grpc_interceptor import ExceptionToStatusInterceptor
 from grpc_interceptor.exceptions import NotFound
-from assets_pb2 import Price, ContactInfo
 from artists_pb2 import (ArtistRequest,
                          ArtistResponse,
-                         ArtistLocationResponse,
-                         ArtistPriceResponse,
-                         ArtistContactInfoResponse,
-                         ArtistListResponse
+                         ArtistListResponse,
                          AddArtistResponse)
 import artists_pb2_grpc
 
@@ -31,19 +27,20 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
         cur = self.conn.cursor()
 
         #Update artist fields
-        cur.execute(f"select * from artist where id={request.user_id}")
+        cur.execute(f"select * from artist where id={request.id};")
         artist = cur.fetchone()
-        response.user_id = artist[0]
-        response.user_name = artist[1]
-        response.city = artist[2]
-        response.price.price = artist[3]
-        response.price.type = artist[4]
-        response.contact_info.email = artist[5]
-        response.contact_info.phone_number = artist[6]
-        response.contact_info.website_url = artist[7]
-        response.rating = artist[8]
-        response.genre = artist[9]
-        response.booking_count = artist[10]
+
+        response.artist.id = artist[0]
+        response.artist.name = artist[1]
+        response.artist.city = artist[2]
+        response.artist.price = artist[3]
+        response.artist.contact_info.email = artist[4]
+        response.artist.contact_info.phone = artist[5]
+        response.artist.contact_info.website = artist[6]
+        response.artist.rating = artist[7]
+        response.artist.genre = artist[8]
+        response.artist.booking_count = artist[9]
+        response.artist.type = artist[10]
         return response
 
     def AddArtist(self, request, context):
@@ -53,15 +50,25 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
 
         # Insert Data
         cur.execute(f"INSERT INTO artist (name,\
-                                        location_range,\
+                                        city,\
+                                        price,\
+                                        email,\
+                                        phone,\
+                                        website,\
                                         rating,\
                                         genre,\
-                                        booking_count)\
-                        VALUES('{request.user_name}',\
-                                {request.range},\
+                                        booking_count,\
+                                        type)\
+                        VALUES('{request.name}',\
+                                {request.city},\
+                                {request.price},\
+                                '{request.contact_info.email}',\
+                                '{request.contact_info.phone}',\
+                                '{request.contact_info.website}',\
                                 {request.rating},\
                                 {request.genre},\
-                                {request.booking_count});")
+                                {request.booking_count},\
+                                {request.type});")
         response.response = 1
         return response
 
@@ -69,18 +76,7 @@ class ArtistsService(artists_pb2_grpc.ArtistsServicer):
     def GetNearbyArtists(self, request, context):
         """Find artists who live in same location based on name.
         TODO: Make this use distance or a categorical"""
-        # Initialize
-        response = ArtistListResponse()
-        cur = self.conn.cursor()
-
-        # Update fields
-        cur.execute(f"select artist.id \
-                            from (artist JOIN location ON artist.location_id = location.id)\
-                            where location.name = '{request.location.name}'")
-        artists = cur.fetchall()
-        for artist in artists:
-            response.nearby_artists.append(self.GetArtist(ArtistRequest(user_id=artist[0]), None))
-        return response
+        pass
 
 
 

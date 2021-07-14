@@ -10,10 +10,10 @@ enum Rating {
 
 enum Genre {
     POP = 0;
-    INDIE = 2;
-    HIPHOP = 3;
-    ELECTRONIC = 4;
-    RNB = 5;
+    INDIE = 1;
+    HIPHOP = 2;
+    ELECTRONIC = 3;
+    RNB = 4;
 }
 
 enum PricingType {
@@ -29,10 +29,15 @@ enum Status {
     CANCELLED = 3;
 }
 
-enum City{
+enum City {
     TORONTO = 0;
     BROOKLYN = 1;
     HONOLULU = 2;
     ATLANTA = 3;
     LA = 4;
+}
+
+enum ArtistType {
+    SOLO = 0;
+    GROUP = 1;
 }

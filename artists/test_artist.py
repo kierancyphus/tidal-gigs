@@ -1,22 +1,25 @@
 from artists import ArtistsService
-from artists_pb2 import ArtistRequest, NearbyArtistsRequest, GenreArtistRequest
-from assets_pb2 import Location
+from artists_pb2 import ArtistRequest, AddArtistRequest
+from assets_pb2 import ContactInfo
 import grpc
 from artists_pb2_grpc import ArtistsStub
 
 if __name__ == "__main__":
     channel = grpc.insecure_channel("localhost:50051")
     client = ArtistsStub(channel)
-    request = ArtistRequest(user_id=1)
-    client.GetArtistLocation(request, None)
-    client.GetArtistPrice(request)
-    client.GetArtistContactInfo(request)
-    client.GetArtist(request)
-    request = NearbyArtistsRequest(location=Location(name="Brooklyn",
-                                                     longitude=0.1,
-                                                     latitude=0.1),
-                                  max_artists=10)
-    nearby = client.GetNearbyArtists(request, None)
-    print(nearby)
+    contact_info = ContactInfo(email="jayz@gmail.com",
+                               phone="111111111",
+                               website="jayz.com")
+    request = AddArtistRequest(name="Jay Z",
+                               city="BROOKLYN",
+                               price=1000,
+                               contact_info = contact_info,
+                               rating="FIVE",
+                               genre="HIPHOP",
+                               booking_count=10,
+                               type="SOLO")
+    client.AddArtist(request, None)
+    request = ArtistRequest(id=1)
+    artist = client.GetArtist(request, None)
 
-    print("success")
+    print(artist)
