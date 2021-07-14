@@ -22,7 +22,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route("/get-artist/<user_id>")
 def get_artists(user_id):
     # Initialize
-    return user_id
+    return {'id': user_id}
     response = ArtistResponse()
     cur = self.conn.cursor()
 
@@ -45,7 +45,7 @@ def get_artists(user_id):
 
 
 @app.route("/add-artists")
-def add_artists(self, request, context):
+def add_artists():
     # Initialize
     response = AddArtistResponse()
     cur = conn.cursor()
@@ -76,7 +76,7 @@ def add_artists(self, request, context):
 
 
 @app.route("/get-nearby-artists")
-def get_nearby_artists(self, request, context):
+def get_nearby_artists():
     """Find artists who live in same location based on name.
     TODO: Make this use distance or a categorical"""
     pass
