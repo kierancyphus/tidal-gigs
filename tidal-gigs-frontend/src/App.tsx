@@ -1,36 +1,31 @@
-import React from 'react';
-import './App.css';
-// import { ArtistRequest } from './protos/artists_pb'
-// import { ArtistsClient } from './protos/artists_grpc_web_pb'
-// import { useState } from 'react';
-import { useEffect } from 'react';
-const axios = require('axios')
-// var client = new ArtistsClient('http://localhost:8081')
+import React from 'react'
+// import './App.css'
+// import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { getArtist } from './api/artists'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-function App() {
-  // const [artist, setArtist] = useState(null);
+const App = () => (
+  <Router>
+    <div>Sidebar here?</div>
+    <Switch>
+      <Route path="/surf">
+        <div>Surfing!!</div>
+      </Route>
+      <Route path="/bookings">bookings!</Route>
+    </Switch>
+  </Router>
+)
 
-  const getArtist = async () => {
-    const url = "http://localhost:5000/get-artists/10"
-    try {
-      console.log("about to make a request")
-      const response = await axios.get(url)
-      console.log(response)
-    } catch(err) {
-      console.log(err)
-    }
-    
-  }
+// function App() {
+//   // const [artist, setArtist] = useState(null);
 
-  useEffect(() => {
-    getArtist()
-  }, [])
+//   useEffect(() => {
+//     getArtist(10)
+//   }, [])
 
-  return (
-    <div>
-      Nothing here
-    </div>
-  );
-}
+//   return <div>Nothing here</div>
+// }
 
-export default App;
+export default App
