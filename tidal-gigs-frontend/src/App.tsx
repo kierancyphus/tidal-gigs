@@ -1,22 +1,24 @@
-import React from 'react'
-// import './App.css'
-// import { useState } from 'react'
-import { useEffect } from 'react'
-import axios from 'axios'
-import { getArtist } from './api/artists'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Bookings from './components/Bookings'
 
-const App = () => (
-  <Router>
-    <div>Sidebar here?</div>
-    <Switch>
-      <Route path="/surf">
-        <div>Surfing!!</div>
-      </Route>
-      <Route path="/bookings">bookings!</Route>
-    </Switch>
-  </Router>
-)
+const App = () => {
+  return (
+    <>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <Route path="/surf">
+            <div>Surfing!!</div>
+          </Route>
+          <Route path="/bookings">
+            <Bookings />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  )
+}
 
 // function App() {
 //   // const [artist, setArtist] = useState(null);
