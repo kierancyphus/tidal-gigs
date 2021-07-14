@@ -1,0 +1,1 @@
+env FLASK_APP=bookers.py python -m flask run

@@ -5,99 +5,67 @@ import pymysql
 import grpc
 from grpc_interceptor import ExceptionToStatusInterceptor
 from grpc_interceptor.exceptions import NotFound
-from bookers_pb2 import BookerRequest, BookerResponse, BookerLocationRespons, BookerAskingPriceResponse, BookerContactInfoResponse
 import bookers_pb2_grpc
+from flask import Flask
+from flask_cors import CORS, cross_origin
+from bookers_pb2 import (BookerRequest,
+                         BookerResponse)
 
-class BookersService(bookers_pb2_grpc.BookersServicer):
-    """Microservice thing for bookers"""
-    def __init__(self):
-        self.conn = pymysql.connect(
-            host='localhost',
-            user='user',
-            password="password",
-            db='tidalsurfbooker',
-        )
-    
-    def GetBooker(self, request, context):
-        #Initialize
-        response = BookerResponse()
-        cur = self.conn.cursor()
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-        #Update booker fields
-        cur.execute(f"select * from bookers where id={request.user_id}")
-        booker = cur.fetchone()
-        response.user_id = booker[0]
-        response.user_name = booker[1]
-        response.location.CopyFrom(self.GetBookerLocation(request, None).location)
-        response.asing_price.CopyFrom(self.GetBookerPrice(request, None).price)
-        response.contact_info.CopyFrom(self.GetBookerContactInfo(request, None).contact_info)
-        response.rating = booker[6]
-        response.booking_count = booker[7]
-        return response
+@cross_origin
+@app.route("/get-booker/<user_id>")
+def get_booker(user_id):
+    return {'id': user_id}
+    response = BookerResponse()
+    cur = self.conn.cursor()
 
-    def GetBookerLocation(self, request, context):
-        #Initialize
-        response = BookerLocationResponse()
-        cur = self.conn.cursor()
+    cur.execute(f"select * from booker where id={request.id};")
+    booker = cur.fetchone()
 
-        # Update fields
-        cur.execute(f"select location.name,\
-                             location.longitude,\
-                             location.latitude\
-                             from (booker JOIN location ON booker.location_id = location.id)\
-                             where booker.id={request.user_id}")
-        location = cur.fetchone()
-        response.location.name = location[0]
-        response.location.longitude = location[1]
-        response.location.latitude = location[2]
-        return response
+    response.booker.id = booker[0]
+    response.booker.name = booker[1]
+    response.booker.city = booker[2]
+    response.booker.asking_price = booker[3]
+    response.booker.contact_info.email = booker[4]
+    response.booker.contact_info.phone = booker[5]
+    response.booker.contact_info.website = booker[6]
+    response.booker.booking_count = booker[7]
+    return response
 
-    def GetBookerAskingPrice(self, request, context):
-        # Initialize
-        response = BookerPriceResponse()
-        cur = self.conn.cursor()
+@app.route("/add-booker")
+def add_booker():
+    response = AddBookerResponse()
+    cur = conn.cursor()
+    cur.execute(f"INSERT INTO booker (name,\
+                                        city,\
+                                        asking_price,\
+                                        email,\
+                                        phone,\
+                                        website,\
+                                        booking_count)\
+                        VALUES('{request.name}',\
+                                {request.city},\
+                                {request.price},\
+                                '{request.contact_info.email}',\
+                                '{request.contact_info.phone}',\
+                                '{request.contact_info.website}',\
+                                {request.booking_count};")
+    response.response = 1
+    return response
 
-        # Update fields
-        cur.execute(f"select price.price,\
-                             price.pricing_type\
-                             from (booker JOIN price ON booker.price_id = price.id)\
-                             where booker.id={request.user_id}")
-        price = cur.fetchone()
-        response.price.price = price[0]
-        response.price.type = price[1]
-        return response
-
-    def GetBookerContactInfo(self, request, context):
-        #Initialize
-        response = BookerContactInfoResponse()
-        cur = self.conn.cursor()
-
-        # Update fields
-        cur.execute(f"select contact_info.email,\
-                             contact_info.phone,\
-                             contact_info.website\
-                             from (booker JOIN contact_info ON booker.contact_info_id = contact_info.id)\
-                             where booker.id={request.user_id}")
-        price = cur.fetchone()
-        response.contact_info.email = price[0]
-        response.contact_info.phone_number = price[1]
-        response.contact_info.website_url = price[2]
-        return response
-
-    def SetBookerAvailability(self, request, context):
-        #initialize 
-        response = Booker
-
-
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
-    bookers_pb2_grpc.add_BookersServicer_to_server(
-        BookersService(), server
-    )
-    server.add_insecure_port("[::]:50051")
-    server.start()
-    server.wait_for_termination()
+def AddBookerAvailability(self, request, context):
+    """Add booker availability.
+        TODO: Make this use calendar? """
+    pass
 
 
 if __name__ == "__main__":
-    serve()
+    conn = pymysql.connect(
+        host='localhost',
+        user='user',
+        password="password",
+        db='tidalsurfbooker',
+    )

@@ -17,6 +17,5 @@ asking_price INTEGER NOT NULL, -- in cents
 email VARCHAR(50),
 phone VARCHAR(20),
 website VARCHAR(200),
-booking_count INTEGER NOT NULL,
-type INTEGER NOT NULL
+booking_count INTEGER NOT NULL
 );
