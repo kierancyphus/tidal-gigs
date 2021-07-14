@@ -12,7 +12,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   root: (theme: Theme) => ({
     paddingTop: theme.spacing(3), // `${theme.spacing(3)}px ${theme.spacing(4)}px`,
-    background: theme.palette.grey[900],
+    background: '#242528',
+    // background: theme.palette.grey[900],
     height: '100vh',
   }),
   top: (theme: Theme) => ({
