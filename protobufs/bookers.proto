@@ -12,3 +12,4 @@ message Booker {
     Rating rating = 6;
     int32 booking_count = 7;
 }
+
