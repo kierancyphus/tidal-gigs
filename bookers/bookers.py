@@ -32,17 +32,27 @@ def get_booker(user_id):
     cur.execute(sqlQuery, user_id)
     booker = cur.fetchone()
     '''
+    response = BookerResponse()
     response.booker.id = booker[0]
     response.booker.name = booker[1]
     response.booker.city = booker[2]
     response.booker.asking_price = booker[3]
     response.booker.contact_info.email = booker[4]
     response.booker.contact_info.phone = booker[5]
-    response.booker.contact_info.website = booker[6]
+    response.booker.contact_info.website = booker.get(6, None)
     response.booker.booking_count = booker[7]
     '''
 
     return {'response': booker}
+
+
+@app.route("/get-bookers", methods=['GET'])
+def get_bookers():
+    cur = conn.cursor()
+    sqlQuery = "select * from booker"
+    cur.execute(sqlQuery)
+    bookers = cur.fetchall()
+    return {'response': bookers}
 
 @app.route("/add-booker", methods=['POST'])
 def add_booker():
