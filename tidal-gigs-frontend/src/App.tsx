@@ -1,36 +1,34 @@
-import React from 'react';
-import './App.css';
-// import { ArtistRequest } from './protos/artists_pb'
-// import { ArtistsClient } from './protos/artists_grpc_web_pb'
-// import { useState } from 'react';
-import { useEffect } from 'react';
-const axios = require('axios')
-// var client = new ArtistsClient('http://localhost:8081')
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Bookings from './components/Bookings'
+import MainPage from './components/MainPage'
 
-function App() {
-  // const [artist, setArtist] = useState(null);
-
-  const getArtist = async () => {
-    const url = "http://localhost:5000/get-artists/10"
-    try {
-      console.log("about to make a request")
-      const response = await axios.get(url)
-      console.log(response)
-    } catch(err) {
-      console.log(err)
-    }
-    
-  }
-
-  useEffect(() => {
-    getArtist()
-  }, [])
-
+const App = () => {
   return (
-    <div>
-      Nothing here
-    </div>
-  );
+    <>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <Route path="/surf">
+            <div>Surfing!!</div>
+          </Route>
+          <Route path="/bookings">
+            <MainPage />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  )
 }
 
-export default App;
+// function App() {
+//   // const [artist, setArtist] = useState(null);
+
+//   useEffect(() => {
+//     getArtist(10)
+//   }, [])
+
+//   return <div>Nothing here</div>
+// }
+
+export default App
