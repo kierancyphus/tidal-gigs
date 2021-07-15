@@ -1,22 +1,22 @@
-import React, { useRef, FC } from 'react'
+import React, { useRef, FC } from 'react';
 
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import Popper from '@material-ui/core/Popper'
-import Grow from '@material-ui/core/Grow'
-import Paper from '@material-ui/core/Paper'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
-import InputBase from '@material-ui/core/InputBase'
-import { useState } from 'react'
-import { useTheme, makeStyles } from '@material-ui/core/styles'
-import { Theme } from '@material-ui/core/styles/createTheme'
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Popper from '@material-ui/core/Popper';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputBase from '@material-ui/core/InputBase';
+import { useState } from 'react';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createTheme';
 
-import MusicNoteIcon from '@material-ui/icons/MusicNote'
-import NearMeIcon from '@material-ui/icons/NearMe'
-import PersonIcon from '@material-ui/icons/Person'
-import SearchIcon from '@material-ui/icons/Search'
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import NearMeIcon from '@material-ui/icons/NearMe';
+import PersonIcon from '@material-ui/icons/Person';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
   root: {
@@ -122,20 +122,20 @@ const useStyles = makeStyles({
     fontSize: '14px',
     fontWeight: 500,
   }),
-})
-// interface SearchBarProps {
-//   location: string
-//   genre: string
-//   type: string
-//   setGenre: React.Dispatch<React.SetStateAction<string>>
-//   setType: React.Dispatch<React.SetStateAction<string>>
-//   setLocation: React.Dispatch<React.SetStateAction<string>>
-//   setSearch: React.Dispatch<React.SetStateAction<string>>
-//   handleSubmit: () => void
-// }
+});
+interface SearchBarProps {
+  location: string;
+  genre: string;
+  type: string;
+  setGenre: React.Dispatch<React.SetStateAction<string>>;
+  setType: React.Dispatch<React.SetStateAction<string>>;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: () => void;
+}
 
 // idk why it doesn't like the interface :()
-const SearchBar: FC<any> = ({
+const SearchBar: FC<SearchBarProps> = ({
   setLocation,
   setGenre,
   setType,
@@ -145,17 +145,17 @@ const SearchBar: FC<any> = ({
   genre,
   type,
 }) => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
-  const anchorRefLocation = useRef<HTMLButtonElement>(null)
-  const [openLocation, setOpenLocation] = useState<boolean>(false)
+  const anchorRefLocation = useRef<HTMLButtonElement>(null);
+  const [openLocation, setOpenLocation] = useState<boolean>(false);
 
-  const anchorRefGenre = useRef<HTMLButtonElement>(null)
-  const [openGenre, setOpenGenre] = useState<boolean>(false)
+  const anchorRefGenre = useRef<HTMLButtonElement>(null);
+  const [openGenre, setOpenGenre] = useState<boolean>(false);
 
-  const anchorRefType = useRef<HTMLButtonElement>(null)
-  const [openType, setOpenType] = useState<boolean>(false)
+  const anchorRefType = useRef<HTMLButtonElement>(null);
+  const [openType, setOpenType] = useState<boolean>(false);
 
   const locationOptions: string[] = [
     'Toronto, Ontario',
@@ -163,45 +163,51 @@ const SearchBar: FC<any> = ({
     'New York City, New York',
     'Atlanta, Georgia',
     'Houston, Texas',
-  ]
-  const genreOptions: string[] = ['R&B', 'Hip Hop', 'Country', 'Metal', 'Indie']
-  const typeOptions: string[] = ['Band', 'Solo']
+  ];
+  const genreOptions: string[] = [
+    'R&B',
+    'Hip Hop',
+    'Country',
+    'Metal',
+    'Indie',
+  ];
+  const typeOptions: string[] = ['Band', 'Solo'];
 
   const handleToggleLocation = () => {
-    setOpenLocation(prevOpen => !prevOpen)
-  }
+    setOpenLocation(prevOpen => !prevOpen);
+  };
 
   const handleToggleGenre = () => {
-    setOpenGenre(prevOpen => !prevOpen)
-  }
+    setOpenGenre(prevOpen => !prevOpen);
+  };
 
   const handleToggleType = () => {
-    setOpenType(prevOpen => !prevOpen)
-  }
+    setOpenType(prevOpen => !prevOpen);
+  };
 
   const handleCloseLocation = (
     event: React.MouseEvent<EventTarget>,
     content: string,
   ) => {
-    setLocation(content)
-    setOpenLocation(false)
-  }
+    setLocation(content);
+    setOpenLocation(false);
+  };
 
   const handleCloseGenre = (
     event: React.MouseEvent<EventTarget>,
     content: string,
   ) => {
-    setGenre(content)
-    setOpenLocation(false)
-  }
+    setGenre(content);
+    setOpenLocation(false);
+  };
 
   const handleCloseType = (
     event: React.MouseEvent<EventTarget>,
     content: string,
   ) => {
-    setType(content)
-    setOpenLocation(false)
-  }
+    setType(content);
+    setOpenLocation(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -364,7 +370,7 @@ const SearchBar: FC<any> = ({
         )}
       </Popper>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

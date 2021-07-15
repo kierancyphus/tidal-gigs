@@ -1,43 +1,45 @@
-import { FC, useState } from 'react'
-import SidebarContainer from './SidebarContainer'
-import SearchBar from './SearchBar'
+import { FC, useState } from 'react';
+import SidebarContainer from './SidebarContainer';
+import SearchBar from './SearchBar';
+import LocalArtistsForHire from './LocalArtistsForHire';
+import VenueMood from './VenueMood';
 
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import Fab from '@material-ui/core/Fab'
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
-import { useTheme, makeStyles } from '@material-ui/core/styles'
-import { Theme } from '@material-ui/core/styles/createTheme'
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createTheme';
 
-import Background from '../assets/booker_background.png'
-import Typography from '@material-ui/core/Typography'
+import Background from '../assets/booker_background.png';
+import Typography from '@material-ui/core/Typography';
 
 const MainPageSidebar: FC = () => (
   <SidebarContainer>
     <MainPage />
   </SidebarContainer>
-)
+);
 
 const useStyles = makeStyles({
   background: (theme: Theme) => ({
     backgroundImage: `url(${Background})`,
     width: '100%',
     height: '100%',
-    padding: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    paddingTop: theme.spacing(4),
   }),
   backgroundSearched: (theme: Theme) => ({
     background: '#1D1D1E',
     width: '100%',
     height: '100%',
     padding: theme.spacing(4),
-    // transition: 'background 1.5s linear',
   }),
   nav: (theme: Theme) => ({
     background: theme.palette.grey[800],
-    // opacity: 0.5,
     color: theme.palette.grey[200],
     marginRight: theme.spacing(3),
   }),
@@ -46,49 +48,52 @@ const useStyles = makeStyles({
     height: theme.spacing(4),
   }),
   spacer: (theme: Theme) => ({
-    marginBottom: theme.spacing(6),
+    marginBottom: theme.spacing(5),
   }),
   title: (theme: Theme) => ({
     fontFamily: 'Nationale',
     color: '#FFFFFF',
-    // marginBottom: theme.spacing(2.5),
     fontSize: '18px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '24px',
   }),
   subtitle: (theme: Theme) => ({
     fontFamily: 'Nationale',
     color: '#FFFFFF',
-    // marginBottom: theme.spacing(2.5),
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '24px',
   }),
-})
+  exploreContainer: (theme: Theme) => ({
+    marginLeft: '-2.2%', // this is absolutely disgusting but oh well
+    background: theme.palette.grey[900],
+    width: '104.5%',
+    height: '100%',
+  }),
+});
 
 const MainPage: FC = () => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
-  const [location, setLocation] = useState<string>('Location')
-  const [genre, setGenre] = useState<string>('Genre')
-  const [type, setType] = useState<string>('Group')
+  const [location, setLocation] = useState<string>('Location');
+  const [genre, setGenre] = useState<string>('Genre');
+  const [type, setType] = useState<string>('Group');
   const [searchQuery, setSearchQuery] = useState<string>(
     'Search for a local artist...',
-  )
+  );
+  const [search, setSearch] = useState<boolean>(false);
 
   const handleSubmit = () => {
-    console.log(location, genre, type, searchQuery)
-    setSearch(true)
+    console.log(location, genre, type, searchQuery);
+    setSearch(true);
     // need to submit here
-  }
-
-  const [search, setSearch] = useState<boolean>(false)
+  };
 
   return (
     <Box className={search ? classes.backgroundSearched : classes.background}>
       <Box className={classes.spacer}>
-        <Fab className={classes.nav}>
+        <Fab className={classes.nav} onClick={() => setSearch(curr => !curr)}>
           <NavigateBeforeIcon className={classes.icon} />
         </Fab>
         <Fab className={classes.nav}>
@@ -117,10 +122,18 @@ const MainPage: FC = () => {
           handleSubmit={handleSubmit}
         />
       </Box>
-      <Button onClick={() => setSearch(!search)}>Search</Button>
-      Main page here
-    </Box>
-  )
-}
 
-export default MainPageSidebar
+      {!search && (
+        <Box className={classes.spacer}>
+          <LocalArtistsForHire />
+        </Box>
+      )}
+
+      <Box className={classes.exploreContainer}>
+        <VenueMood />
+      </Box>
+    </Box>
+  );
+};
+
+export default MainPageSidebar;
