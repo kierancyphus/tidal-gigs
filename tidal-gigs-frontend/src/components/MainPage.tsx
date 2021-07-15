@@ -124,14 +124,15 @@ const MainPage: FC = () => {
       </Box>
 
       {!search && (
-        <Box className={classes.spacer}>
-          <LocalArtistsForHire />
-        </Box>
+        <>
+          <Box className={classes.spacer}>
+            <LocalArtistsForHire />
+          </Box>
+          <Box className={classes.exploreContainer}>
+            <VenueMood />
+          </Box>
+        </>
       )}
-
-      <Box className={classes.exploreContainer}>
-        <VenueMood />
-      </Box>
     </Box>
   );
 };

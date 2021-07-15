@@ -21,6 +21,7 @@ export const useStyles = makeStyles({
     width: '140px',
     height: '140px',
     backgroundColor: theme.palette.grey[500],
+    marginBottom: theme.spacing(2),
   }),
   venueContainer: (theme: Theme) => ({
     display: 'flex',
@@ -74,8 +75,8 @@ const VenueMood: FC = () => {
           <Button className={classes.vibeContainer} key={vibe + availability}>
             <Box className={classes.vibe}>
               <Box className={classes.square} />
-              <Typography className={classes.name}>{vibe}</Typography>
-              <Typography className={classes.availability}>
+              <Typography variant="subtitle1">{vibe}</Typography>
+              <Typography variant="subtitle2">
                 {availability} artists nearby
               </Typography>
             </Box>

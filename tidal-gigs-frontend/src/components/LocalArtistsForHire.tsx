@@ -26,11 +26,6 @@ const useStyles = makeStyles({
     lineHeight: '24px',
   }),
   name: (theme: Theme) => ({
-    fontFamily: 'Nationale',
-    color: '#FFFFFF',
-    fontSize: '16px',
-    fontWeight: 600,
-    lineHeight: '24px',
     marginTop: theme.spacing(2),
   }),
   genre: (theme: Theme) => ({
@@ -71,8 +66,10 @@ const LocalArtistsForHire: FC = () => {
         {data.map(({ url, name, genre }) => (
           <Box key={url + name + genre} className={classes.profile}>
             <img src={url} />
-            <Typography className={classes.name}>{name}</Typography>
-            <Typography className={classes.genre}>{genre}</Typography>
+            <Box mt={2}>
+              <Typography variant="subtitle1">{name}</Typography>
+            </Box>
+            <Typography variant="subtitle2">{genre}</Typography>
           </Box>
         ))}
       </Box>
