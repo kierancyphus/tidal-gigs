@@ -17,6 +17,7 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   root: {
@@ -123,6 +124,16 @@ const useStyles = makeStyles({
     fontWeight: 500,
   }),
 });
+
+const locationOptions: string[] = [
+  'Toronto, Ontario',
+  'Honolulu, Hawawii',
+  'New York City, New York',
+  'Atlanta, Georgia',
+  'Houston, Texas',
+];
+const genreOptions: string[] = ['R&B', 'Hip Hop', 'Country', 'Metal', 'Indie'];
+const typeOptions: string[] = ['Band', 'Solo'];
 interface SearchBarProps {
   location: string;
   genre: string;
@@ -157,21 +168,15 @@ const SearchBar: FC<SearchBarProps> = ({
   const anchorRefType = useRef<HTMLButtonElement>(null);
   const [openType, setOpenType] = useState<boolean>(false);
 
-  const locationOptions: string[] = [
-    'Toronto, Ontario',
-    'Honolulu, Hawawii',
-    'New York City, New York',
-    'Atlanta, Georgia',
-    'Houston, Texas',
-  ];
-  const genreOptions: string[] = [
-    'R&B',
-    'Hip Hop',
-    'Country',
-    'Metal',
-    'Indie',
-  ];
-  const typeOptions: string[] = ['Band', 'Solo'];
+  const [locations, setLocations] = useState<string[]>([]);
+  const [genres, setGenres] = useState<string[]>([]);
+
+  useEffect(() => {
+    // TODO: update this to make api calls
+
+    setLocations(locationOptions);
+    setGenres(genreOptions);
+  }, []);
 
   const handleToggleLocation = () => {
     setOpenLocation(prevOpen => !prevOpen);
@@ -284,7 +289,7 @@ const SearchBar: FC<SearchBarProps> = ({
             <Paper className={classes.paper}>
               <ClickAwayListener onClickAway={() => handleToggleLocation()}>
                 <MenuList autoFocusItem={openLocation} id="menu-list-grow">
-                  {locationOptions.map(opt => (
+                  {locations.map(opt => (
                     <MenuItem
                       onClick={event => handleCloseLocation(event, opt)}
                       key={opt}
@@ -319,7 +324,7 @@ const SearchBar: FC<SearchBarProps> = ({
             <Paper className={classes.paper}>
               <ClickAwayListener onClickAway={() => handleToggleGenre()}>
                 <MenuList autoFocusItem={openGenre} id="menu-list-grow">
-                  {genreOptions.map(opt => (
+                  {genres.map(opt => (
                     <MenuItem
                       onClick={event => handleCloseGenre(event, opt)}
                       key={opt}

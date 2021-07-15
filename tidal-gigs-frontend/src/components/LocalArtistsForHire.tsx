@@ -48,20 +48,18 @@ const useStyles = makeStyles({
   }),
 });
 
-const LocalArtistsForHire: FC = () => {
+interface LocalArtistsForHireProps {
+  data: Profile[];
+  title: string;
+}
+
+const LocalArtistsForHire: FC<LocalArtistsForHireProps> = ({ data, title }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const [data, setData] = useState<Profile[]>([]);
-
-  useEffect(() => {
-    setData(mockLocalArtistsForHire);
-    // on mount make call to get local artists for hire
-  }, []);
-
   return (
     <Box>
-      <Typography className={classes.title}>Local Artists for Hire</Typography>
+      <Typography className={classes.title}>{title}</Typography>
       <Box className={classes.profileContainer}>
         {data.map(({ url, name, genre }) => (
           <Box key={url + name + genre} className={classes.profile}>

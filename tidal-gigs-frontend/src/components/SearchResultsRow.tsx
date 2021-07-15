@@ -12,10 +12,14 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 const useStyles = makeStyles({
   root: (theme: Theme) => ({
     textTransform: 'none',
-    paddingLeft: theme.spacing(2),
-    marginLeft: -theme.spacing(2),
-    paddingTop: theme.spacing(1.5),
-    paddingBottom: theme.spacing(1.5),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(10),
+    marginLeft: -theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
+    '&:hover': {
+      backgroundColor: theme.palette.grey[600],
+    },
     border: 0,
     display: 'flex',
     justifyContent: 'flex-start',
@@ -79,18 +83,26 @@ export interface ExtendedProfile extends Profile {
   group: string;
 }
 
-const SearchResultsRow: FC<ExtendedProfile> = ({
+interface SearchResultsRowProps extends ExtendedProfile {
+  onClick: (name: string, url: string, genre: string) => void;
+}
+
+const SearchResultsRow: FC<SearchResultsRowProps> = ({
   name,
   genre,
-  url,
+  url = 'replace me with something better',
   location,
   instrument,
   group,
+  onClick,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
-    <ButtonBase className={classes.root}>
+    <ButtonBase
+      className={classes.root}
+      onClick={() => onClick(name, url, genre)}
+    >
       <Box className={classes.row}>
         <Box className={classes.icon}>
           {url ? (

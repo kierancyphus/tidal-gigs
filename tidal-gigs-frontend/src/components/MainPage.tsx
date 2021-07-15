@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
 import SidebarContainer from './SidebarContainer';
 import SearchBar from './SearchBar';
-import LocalArtistsForHire from './LocalArtistsForHire';
+import LocalArtistsForHire, { Profile } from './LocalArtistsForHire';
 import VenueMood from './VenueMood';
+import BookModal from './BookModal';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -18,9 +19,14 @@ import Background from '../assets/booker_background.png';
 import Typography from '@material-ui/core/Typography';
 import SearchResults from './SearchResults';
 import { ExtendedProfile } from './SearchResultsRow';
-import { mockSearchResults } from '../mockData/mockArtistsForHire';
+import {
+  mockHiredArtists,
+  mockLocalArtistsForHire,
+  mockSearchResults,
+} from '../mockData/mockArtistsForHire';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useEffect } from 'react';
 
 const MainPageSidebar: FC = () => (
   <SidebarContainer>
@@ -80,6 +86,9 @@ const useStyles = makeStyles({
     color: '#fff',
     paddingLeft: theme.spacing(40),
   }),
+  hired: (theme: Theme) => ({
+    padding: theme.spacing(4, 4, 0, 5),
+  }),
 });
 
 enum SearchStatus {
@@ -91,6 +100,11 @@ enum SearchStatus {
 enum Page {
   EXPLORE,
   SEARCH,
+}
+
+export interface HiredProfile extends Profile {
+  time: string;
+  amount: number;
 }
 
 const MainPage: FC = () => {
@@ -107,10 +121,26 @@ const MainPage: FC = () => {
 
   // things that handle pages and searching
   const [page, setPage] = useState<Page>(Page.EXPLORE);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [searchStatus, setSearchStatus] = useState<SearchStatus>(
     SearchStatus.NOT_SEARCHED,
   );
   const [searchResults, setSearchResults] = useState<ExtendedProfile[]>([]);
+  const [selected, setSelected] = useState<Profile>({
+    name: '',
+    url: '',
+    genre: '',
+  });
+
+  const [hired, setHired] = useState<HiredProfile[]>([]);
+  const [localArtistsForHire, setLocalArtistsForHire] = useState<Profile[]>(
+    mockLocalArtistsForHire,
+  );
+
+  useEffect(() => {
+    // setHired(mockHiredArtists);
+    // TODO: get hired people
+  }, []);
 
   const handleSubmit = () => {
     setSearchResults([]);
@@ -119,12 +149,25 @@ const MainPage: FC = () => {
     // mock searching
     setSearchStatus(SearchStatus.SEARCHING);
 
+    // TODO: replace
     setTimeout(() => {
       setSearchStatus(SearchStatus.COMPLETED);
       setSearchResults(mockSearchResults);
     }, 2000);
+  };
 
-    // need to submit here
+  const handleSelection = (name: string, url: string, genre: string) => {
+    setOpenModal(true);
+    setSelected({ name, url, genre });
+  };
+
+  const handleConfirmation = (time: string, amount: number) => {
+    setOpenModal(false);
+    setPage(Page.EXPLORE);
+
+    // send request
+    console.log(hired);
+    setHired([...hired, { ...selected, time, amount }]);
   };
 
   return (
@@ -171,9 +214,17 @@ const MainPage: FC = () => {
       {page == Page.EXPLORE && (
         <>
           <Box className={classes.spacer}>
-            <LocalArtistsForHire />
+            <LocalArtistsForHire
+              data={localArtistsForHire}
+              title="Local Artists for Hire"
+            />
           </Box>
           <Box className={classes.exploreContainer}>
+            {hired.length > 0 && (
+              <Box className={classes.hired}>
+                <LocalArtistsForHire data={hired} title="Hired Artists" />
+              </Box>
+            )}
             <VenueMood />
           </Box>
         </>
@@ -186,7 +237,17 @@ const MainPage: FC = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
 
-      {page != Page.EXPLORE && <SearchResults profiles={searchResults} />}
+      {page != Page.EXPLORE && (
+        <>
+          <SearchResults profiles={searchResults} onClick={handleSelection} />
+          <BookModal
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+            handleSubmit={handleConfirmation}
+            {...selected}
+          />
+        </>
+      )}
     </Box>
   );
 };

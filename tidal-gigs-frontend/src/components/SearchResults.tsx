@@ -70,9 +70,10 @@ const useStyles = makeStyles({
 
 interface SearchResultsProps {
   profiles: ExtendedProfile[];
+  onClick: (name: string, url: string, genre: string) => void;
 }
 
-const SearchResults: FC<SearchResultsProps> = ({ profiles }) => {
+const SearchResults: FC<SearchResultsProps> = ({ profiles, onClick }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
@@ -100,6 +101,7 @@ const SearchResults: FC<SearchResultsProps> = ({ profiles }) => {
             <SearchResultsRow
               {...profile}
               key={`search_result:${profile.name}`}
+              onClick={onClick}
             />
           ))
         ) : (
