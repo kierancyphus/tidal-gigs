@@ -59,11 +59,18 @@ def add_artist():
     return {'response': 0}
 
 
-@app.route("/get-nearby-artists")
+@app.route("/get-nearby-artists", methods=["GET"])
 def get_nearby_artists():
-    """Find artists who live in same location based on name.
-    TODO: Make this use distance or a categorical"""
-    pass
+    """Find artists who live in same location based on name."""
+
+    def filter_genre():
+        pass
+    cur = conn.cursor()
+    # Update artist fields
+    cur.execute(f"select * from artist where city='{request.args.get('city')}';")
+    artists = cur.fetchall()
+
+    return {'artists': artists}
 
 
 if __name__ == "__main__":
