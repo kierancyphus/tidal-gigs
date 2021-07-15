@@ -3,12 +3,41 @@ syntax = "proto3";
 import "enums.proto";
 import "assets.proto";
 
-message Booker {
-    int32 user_id = 1;
-    string user_name = 2;
-    Location location = 3;
-    Price asking_price = 4;
-    ContactInfo contact_info = 5;
-    Rating rating = 6;
-    int32 booking_count = 7;
+message BookerRequest{
+    int32 id = 1;
 }
+
+message Booker {
+    int32 id = 1;
+    string name = 2;
+    City city = 3;
+    int32 asking_price = 4;
+    ContactInfo contact_info = 5;
+    int32 booking_count = 6;
+}
+
+message BookerResponse {
+    Booker booker = 1;
+}
+
+message BookerListResponse {
+    repeated Booker bookers = 1;
+}
+
+message AddBookerRequest {
+    string name = 1;
+    City city = 2;
+    int32 asking_price = 3;
+    ContactInfo contact_info = 4;
+    int32 booking_count = 5;
+}
+
+message AddBookerResponse {
+    int32 response = 1;
+}
+
+service Bookers {
+    rpc GetBooker(BookerRequest) returns (BookerResponse);
+    rpc AddBooker(AddBookerRequest) returns (AddBookerResponse);
+}
+
