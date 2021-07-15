@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Bookings from './components/Bookings'
+import MainPage from './components/MainPage'
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
             <div>Surfing!!</div>
           </Route>
           <Route path="/bookings">
-            <Bookings />
+            <MainPage />
           </Route>
         </Switch>
       </Router>

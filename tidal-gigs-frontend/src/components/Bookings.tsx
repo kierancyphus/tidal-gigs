@@ -2,6 +2,7 @@ import { FC } from 'react'
 import SidebarContainer from './SidebarContainer'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
+import MainPage from './MainPage'
 
 const BookingsPageSidebar = () => (
   <SidebarContainer>

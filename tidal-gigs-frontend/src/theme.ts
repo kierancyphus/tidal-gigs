@@ -3,14 +3,9 @@ import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/green'
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: green[500],
-    },
-  },
+  // typography: {
+  //   fontFamily: 'Nationale',
+  // },
 })
 
 export default theme
