@@ -24,16 +24,14 @@ conn = pymysql.connect(
         db='tidalsurfbooker',
     )
 
-@cross_origin
-@app.route("/get-booker/<user_id>")
+#@cross_origin
+@app.route("/get-booker/<user_id>", methods=['GET'])
 def get_booker(user_id):
-    return {'id': user_id}
-    response = Booker()
-    cur = self.conn.cursor()
-
-    cur.execute(f"select * from booker where id={user_id};")
+    cur = conn.cursor()
+    sqlQuery = "select * from booker where id = %s"
+    cur.execute(sqlQuery, user_id)
     booker = cur.fetchone()
-
+    '''
     response.booker.id = booker[0]
     response.booker.name = booker[1]
     response.booker.city = booker[2]
@@ -42,7 +40,9 @@ def get_booker(user_id):
     response.booker.contact_info.phone = booker[5]
     response.booker.contact_info.website = booker[6]
     response.booker.booking_count = booker[7]
-    return response.booker.id
+    '''
+
+    return {'response': booker}
 
 @app.route("/add-booker", methods=['POST'])
 def add_booker():
