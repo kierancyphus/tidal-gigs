@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, FC } from 'react'
 
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
@@ -123,15 +123,30 @@ const useStyles = makeStyles({
     fontWeight: 500,
   }),
 })
+// interface SearchBarProps {
+//   location: string
+//   genre: string
+//   type: string
+//   setGenre: React.Dispatch<React.SetStateAction<string>>
+//   setType: React.Dispatch<React.SetStateAction<string>>
+//   setLocation: React.Dispatch<React.SetStateAction<string>>
+//   setSearch: React.Dispatch<React.SetStateAction<string>>
+//   handleSubmit: () => void
+// }
 
-const SearchBar = () => {
+// idk why it doesn't like the interface :()
+const SearchBar: FC<any> = ({
+  setLocation,
+  setGenre,
+  setType,
+  setSearch,
+  handleSubmit,
+  location,
+  genre,
+  type,
+}) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-
-  const [location, setLocation] = useState<string>('Location')
-  const [genre, setGenre] = useState<string>('Genre')
-  const [type, setType] = useState<string>('Group')
-  const [search, setSearch] = useState<string>('Search for a local artist...')
 
   const anchorRefLocation = useRef<HTMLButtonElement>(null)
   const [openLocation, setOpenLocation] = useState<boolean>(false)
@@ -151,12 +166,6 @@ const SearchBar = () => {
   ]
   const genreOptions: string[] = ['R&B', 'Hip Hop', 'Country', 'Metal', 'Indie']
   const typeOptions: string[] = ['Band', 'Solo']
-
-  const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
-    if (event.currentTarget.value.length === 0) {
-      setSearch('Search for a local artist...')
-    }
-  }
 
   const handleToggleLocation = () => {
     setOpenLocation(prevOpen => !prevOpen)
@@ -192,10 +201,6 @@ const SearchBar = () => {
   ) => {
     setType(content)
     setOpenLocation(false)
-  }
-
-  const handleSubmit = (event: React.MouseEvent<EventTarget>) => {
-    // need to submit here
   }
 
   return (
@@ -277,6 +282,7 @@ const SearchBar = () => {
                     <MenuItem
                       onClick={event => handleCloseLocation(event, opt)}
                       key={opt}
+                      className={classes.text}
                     >
                       {opt}
                     </MenuItem>
@@ -311,6 +317,7 @@ const SearchBar = () => {
                     <MenuItem
                       onClick={event => handleCloseGenre(event, opt)}
                       key={opt}
+                      className={classes.text}
                     >
                       {opt}
                     </MenuItem>
@@ -345,6 +352,7 @@ const SearchBar = () => {
                     <MenuItem
                       onClick={event => handleCloseType(event, opt)}
                       key={opt}
+                      className={classes.text}
                     >
                       {opt}
                     </MenuItem>

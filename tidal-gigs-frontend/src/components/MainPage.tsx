@@ -70,6 +70,19 @@ const MainPage: FC = () => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
+  const [location, setLocation] = useState<string>('Location')
+  const [genre, setGenre] = useState<string>('Genre')
+  const [type, setType] = useState<string>('Group')
+  const [searchQuery, setSearchQuery] = useState<string>(
+    'Search for a local artist...',
+  )
+
+  const handleSubmit = () => {
+    console.log(location, genre, type, searchQuery)
+    setSearch(true)
+    // need to submit here
+  }
+
   const [search, setSearch] = useState<boolean>(false)
 
   return (
@@ -82,16 +95,27 @@ const MainPage: FC = () => {
           <NavigateNextIcon className={classes.icon} />
         </Fab>
       </Box>
+      {!search && (
+        <Box className={classes.spacer}>
+          <Typography className={classes.title} gutterBottom>
+            Welcome to Tidal Surfing
+          </Typography>
+          <Typography className={classes.subtitle}>
+            Quickly search and book local artists on Tidal for your next gig
+          </Typography>
+        </Box>
+      )}
       <Box className={classes.spacer}>
-        <Typography className={classes.title} gutterBottom>
-          Welcome to Tidal Surfing
-        </Typography>
-        <Typography className={classes.subtitle}>
-          Quickly search and book local artists on Tidal for your next gig
-        </Typography>
-      </Box>
-      <Box className={classes.spacer}>
-        <SearchBar />
+        <SearchBar
+          location={location}
+          genre={genre}
+          type={type}
+          setLocation={setLocation}
+          setGenre={setGenre}
+          setType={setType}
+          setSearch={setSearchQuery}
+          handleSubmit={handleSubmit}
+        />
       </Box>
       <Button onClick={() => setSearch(!search)}>Search</Button>
       Main page here
