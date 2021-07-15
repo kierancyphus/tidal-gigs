@@ -49,7 +49,7 @@ def add_artist():
                                 '{request.args.get('phone')}',\
                                 '{request.args.get('website')}',\
                                 {request.args.get('rating')},\
-                                {request.args.get('genre')},\
+                                '{request.args.get('genre')}',\
                                 {request.args.get('booking_count')},\
                                 {request.args.get('type')});")
         conn.commit()

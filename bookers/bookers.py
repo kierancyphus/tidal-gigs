@@ -5,13 +5,9 @@ import pymysql
 import grpc
 from grpc_interceptor import ExceptionToStatusInterceptor
 from grpc_interceptor.exceptions import NotFound
-import bookers_pb2_grpc
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
-from bookers_pb2 import (BookerRequest,
-                         BookerResponse,
-                         AddBookerRequest,
-                         AddBookerResponse)
+
 
 app = Flask(__name__)
 cors = CORS(app)
