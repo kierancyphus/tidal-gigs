@@ -31,17 +31,6 @@ def get_booker(user_id):
     sqlQuery = "select * from booker where id = %s"
     cur.execute(sqlQuery, user_id)
     booker = cur.fetchone()
-    '''
-    response = BookerResponse()
-    response.booker.id = booker[0]
-    response.booker.name = booker[1]
-    response.booker.city = booker[2]
-    response.booker.asking_price = booker[3]
-    response.booker.contact_info.email = booker[4]
-    response.booker.contact_info.phone = booker[5]
-    response.booker.contact_info.website = booker.get(6, None)
-    response.booker.booking_count = booker[7]
-    '''
 
     return {'response': booker}
 
