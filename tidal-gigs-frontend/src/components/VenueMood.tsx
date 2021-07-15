@@ -29,7 +29,8 @@ export const useStyles = makeStyles({
   vibe: (theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'left',
+    textAlign: 'left',
   }),
   vibeContainer: (theme: Theme) => ({
     marginRight: theme.spacing(4),

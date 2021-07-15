@@ -75,6 +75,11 @@ const useStyles = makeStyles({
     width: '104.5%',
     height: '100%',
   }),
+  backdrop: (theme: Theme) => ({
+    zIndex: theme.zIndex.drawer - 1,
+    color: '#fff',
+    paddingLeft: theme.spacing(40),
+  }),
 });
 
 enum SearchStatus {
@@ -174,7 +179,10 @@ const MainPage: FC = () => {
         </>
       )}
 
-      <Backdrop open={searchStatus === SearchStatus.SEARCHING}>
+      <Backdrop
+        open={searchStatus === SearchStatus.SEARCHING}
+        className={classes.backdrop}
+      >
         <CircularProgress color="inherit" />
       </Backdrop>
 
