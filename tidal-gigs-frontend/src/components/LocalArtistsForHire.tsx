@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { mockLocalArtistsForHire } from '../mockData/mockArtistsForHire';
 
 export interface Profile {
-  url: string;
+  url?: string;
   name: string;
   genre: string;
 }

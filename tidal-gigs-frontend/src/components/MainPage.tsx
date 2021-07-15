@@ -16,6 +16,11 @@ import { Theme } from '@material-ui/core/styles/createTheme';
 
 import Background from '../assets/booker_background.png';
 import Typography from '@material-ui/core/Typography';
+import SearchResults from './SearchResults';
+import { ExtendedProfile } from './SearchResultsRow';
+import { mockSearchResults } from '../mockData/mockArtistsForHire';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const MainPageSidebar: FC = () => (
   <SidebarContainer>
@@ -72,35 +77,70 @@ const useStyles = makeStyles({
   }),
 });
 
+enum SearchStatus {
+  NOT_SEARCHED,
+  SEARCHING,
+  COMPLETED,
+}
+
+enum Page {
+  EXPLORE,
+  SEARCH,
+}
+
 const MainPage: FC = () => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  // things that should actually be in a form
   const [location, setLocation] = useState<string>('Location');
   const [genre, setGenre] = useState<string>('Genre');
   const [type, setType] = useState<string>('Group');
   const [searchQuery, setSearchQuery] = useState<string>(
     'Search for a local artist...',
   );
-  const [search, setSearch] = useState<boolean>(false);
+
+  // things that handle pages and searching
+  const [page, setPage] = useState<Page>(Page.EXPLORE);
+  const [searchStatus, setSearchStatus] = useState<SearchStatus>(
+    SearchStatus.NOT_SEARCHED,
+  );
+  const [searchResults, setSearchResults] = useState<ExtendedProfile[]>([]);
 
   const handleSubmit = () => {
-    console.log(location, genre, type, searchQuery);
-    setSearch(true);
+    setSearchResults([]);
+    setPage(Page.SEARCH);
+
+    // mock searching
+    setSearchStatus(SearchStatus.SEARCHING);
+
+    setTimeout(() => {
+      setSearchStatus(SearchStatus.COMPLETED);
+      setSearchResults(mockSearchResults);
+    }, 2000);
+
     // need to submit here
   };
 
   return (
-    <Box className={search ? classes.backgroundSearched : classes.background}>
+    <Box
+      className={
+        page == Page.SEARCH ? classes.backgroundSearched : classes.background
+      }
+    >
       <Box className={classes.spacer}>
-        <Fab className={classes.nav} onClick={() => setSearch(curr => !curr)}>
+        <Fab className={classes.nav} onClick={() => setPage(Page.EXPLORE)}>
           <NavigateBeforeIcon className={classes.icon} />
         </Fab>
-        <Fab className={classes.nav}>
+        <Fab
+          className={classes.nav}
+          onClick={() => setPage(Page.SEARCH)}
+          disabled={searchStatus === SearchStatus.NOT_SEARCHED}
+        >
           <NavigateNextIcon className={classes.icon} />
         </Fab>
       </Box>
-      {!search && (
+      {page == Page.EXPLORE && (
         <Box className={classes.spacer}>
           <Typography className={classes.title} gutterBottom>
             Welcome to Tidal Surfing
@@ -123,7 +163,7 @@ const MainPage: FC = () => {
         />
       </Box>
 
-      {!search && (
+      {page == Page.EXPLORE && (
         <>
           <Box className={classes.spacer}>
             <LocalArtistsForHire />
@@ -133,6 +173,12 @@ const MainPage: FC = () => {
           </Box>
         </>
       )}
+
+      <Backdrop open={searchStatus === SearchStatus.SEARCHING}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+      {page != Page.EXPLORE && <SearchResults profiles={searchResults} />}
     </Box>
   );
 };

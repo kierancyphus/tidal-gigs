@@ -3,14 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import { FC } from 'react';
 import { useTheme, makeStyles, Theme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import SearchResultsRow, { ExtendedProfile } from './SearchResultsRow';
+import { Profile } from './LocalArtistsForHire';
 
 const useStyles = makeStyles({
-  rowContainer: (theme: Theme) => ({
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-  }),
   row: (theme: Theme) => ({
     display: 'flex',
     marginBottom: theme.spacing(2),
@@ -51,41 +46,51 @@ const useStyles = makeStyles({
     width: theme.spacing(20),
     height: theme.spacing(4),
     // backgroundColor: 'yellow',
-
     display: 'flex',
     alignItems: 'center',
   }),
 });
 
-interface SearchResultsProps {
-  profiles: ExtendedProfile[];
+export interface ExtendedProfile extends Profile {
+  location: string;
+  instrument: string;
+  group: string;
 }
 
-const SearchResults: FC<SearchResultsProps> = ({ profiles }) => {
+const SearchResultsRow: FC<ExtendedProfile> = ({
+  name,
+  genre,
+  url,
+  location,
+  instrument,
+  group,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
-    <Box>
-      <Typography variant="subtitle1">Search Results</Typography>
-      <Box className={classes.rowContainer}>
-        <Box className={classes.row}>
-          <Box className={classes.icon} />
-          <Box className={classes.artist} />
-          <Box className={classes.genre} />
-          <Box className={classes.location} />
-
-          <Box className={classes.group} />
-        </Box>
-
-        {profiles.map(profile => (
-          <SearchResultsRow
-            {...profile}
-            key={`search_result:${profile.name}`}
-          />
-        ))}
+    <Box className={classes.row}>
+      <Box className={classes.icon}>
+        {url ? (
+          <Avatar className={classes.avatar} src={url} />
+        ) : (
+          <Avatar className={classes.avatar}>AB</Avatar>
+        )}
+      </Box>
+      <Box className={classes.artist}>
+        <Typography variant="subtitle1">{name}</Typography>
+        <Typography variant="subtitle2">{instrument}</Typography>
+      </Box>
+      <Box className={classes.location}>
+        <Typography variant="subtitle1">{location}</Typography>
+      </Box>
+      <Box className={classes.genre}>
+        <Typography variant="subtitle1">{genre}</Typography>
+      </Box>
+      <Box className={classes.group}>
+        <Typography variant="subtitle1">{group}</Typography>
       </Box>
     </Box>
   );
 };
 
-export default SearchResults;
+export default SearchResultsRow;
