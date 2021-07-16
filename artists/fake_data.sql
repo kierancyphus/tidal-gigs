@@ -522,3 +522,126 @@ VALUES (
     11,
     1
 );
+
+
+--ADDING MOCK DATA INTO AVAILABILITIES
+
+INSERT INTO availability (id, artist_id, availability) VALUES (1,1, '2021-07-20');
+INSERT INTO availability (id, artist_id, availability) VALUES (2,1, '2021-07-21');
+INSERT INTO availability (id, artist_id, availability) VALUES (3,1, '2008-11-11');
+INSERT INTO availability (id, artist_id, availability) VALUES (4,1, '2021-07-23');
+INSERT INTO availability (id, artist_id, availability) VALUES (5,1, '2021-07-24');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (6,2, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (7,2, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (8,2, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (9,2, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (10,2, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (11,3, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (12,3, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (13,3, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (14,3, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (15,3, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (16,4, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (17,4, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (18,4, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (19,4, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (20,4, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (21,5, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (22,5, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (23,5, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (24,5, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (25,5, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (26,6, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (27,6, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (28,6, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (29,6, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (30,6, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (31,7, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (32,7, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (33,7, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (34,7, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (35,7, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (36,8, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (37,8, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (38,8, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (39,8, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (40,8, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (41,9, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (42,9, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (43,9, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (44,9, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (45,9, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (46,10, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (47,10, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (48,10, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (49,10, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (50,10, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (51,11, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (52,11, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (53,11, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (54,11, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (55,11, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (56,12, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (57,12, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (58,12, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (59,12, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (60,12, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (61,13, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (62,13, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (63,13, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (64,13, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (65,13, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (66,14, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (67,14, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (68,14, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (69,14, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (70,14, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (71,15, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (72,15, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (73,15, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (74,15, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (75,15, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (76,16, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (77,16, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (78,16, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (79,16, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (80,16, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (81,17, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (82,17, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (83,17, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (84,17, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (85,17, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (86,18, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (87,18, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (88,18, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (89,18, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (90,18, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (91,19, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (92,19, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (93,19, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (94,19, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (95,19, '2021-07-27');
+
+INSERT INTO availability (id, artist_id, availability) VALUES (96,20, '2021-07-17');
+INSERT INTO availability (id, artist_id, availability) VALUES (97,20, '2021-07-18');
+INSERT INTO availability (id, artist_id, availability) VALUES (98,20, '2021-07-22');
+INSERT INTO availability (id, artist_id, availability) VALUES (99,20, '2021-07-25');
+INSERT INTO availability (id, artist_id, availability) VALUES (100,20, '2021-07-27');
