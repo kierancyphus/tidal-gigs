@@ -41,7 +41,6 @@ def get_bookers():
 
 @app.route("/add-booker", methods=['POST'])
 def add_booker():
-    response = AddBookerResponse()
     cur = conn.cursor()
     sqlQuery = "INSERT INTO booker (name, city, asking_price, email, phone, website, booking_count) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     val = (request.args.get('name'),
@@ -55,10 +54,10 @@ def add_booker():
         cur.execute(sqlQuery, val)
         conn.commit()
     except pymysql.IntegrityError:
-        return {'response': 1}
+        return {'success': 'no'}
 
     #success
-    return {'response': 0}
+    return {'success': 'yes'}
 
 def AddBookerAvailability(self, request, context):
     """Add booker availability.
