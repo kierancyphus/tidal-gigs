@@ -7,10 +7,6 @@ GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfartist.* TO 'user'@'loca
 
 ALTER USER 'user'@'localhost' IDENTIFIED BY 'password';
 SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS artist;
-DROP TABLE IF EXISTS location;
-DROP TABLE IF EXISTS price;
-DROP TABLE IF EXISTS contact_info;
 SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE IF NOT EXISTS  artist(
@@ -25,4 +21,11 @@ rating INTEGER NOT NULL,
 genre VARCHAR(20),
 booking_count INTEGER NOT NULL,
 type INTEGER NOT NULL -- 1 for group 0 for solo
+);
+
+CREATE TABLE IF NOT EXISTS availability(
+id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+artist_id INTEGER NOT NULL,
+availability DATE NOT NULL,
+UNIQUE KEY (artist_id, availability)
 );

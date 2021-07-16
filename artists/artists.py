@@ -19,7 +19,6 @@ conn = pymysql.connect(
 def get_artists(user_id):
     # Initialize
     cur = conn.cursor()
-
     # Update artist fields
     cur.execute(f"select * from artist where id={user_id};")
     artist = cur.fetchone()
@@ -31,32 +30,26 @@ def add_artist():
     cur = conn.cursor()
 
     # Insert Data
+    sqlQuery = "INSERT INTO artist (name, city, price, email, phone, website, rating, genre, booking_count, type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s )"
+    val = (request.args.get('name'),
+           request.args.get('city'),
+           request.args.get('price', None),
+           request.args.get('email', None),
+           request.args.get('phone', None),
+           request.args.get('website', None),
+           request.args.get('rating', None),
+           request.args.get('genre', None),
+           request.args.get('booking_count', None),
+           request.args.get('type', None))
     try:
-        cur.execute(f"INSERT INTO artist (name,\
-                                        city,\
-                                        price,\
-                                        email,\
-                                        phone,\
-                                        website,\
-                                        rating,\
-                                        genre,\
-                                        booking_count,\
-                                        type)\
-                        VALUES('{request.args.get('name')}',\
-                                '{request.args.get('city')}',\
-                                {request.args.get('price')},\
-                                '{request.args.get('email')}',\
-                                '{request.args.get('phone')}',\
-                                '{request.args.get('website')}',\
-                                {request.args.get('rating')},\
-                                '{request.args.get('genre')}',\
-                                {request.args.get('booking_count')},\
-                                {request.args.get('type')});")
+
+        cur.execute(sqlQuery, val)
         conn.commit()
     except pymysql.IntegrityError:
-        return {'response': 1}
+        return {'success': 'no'}
 
-    return {'response': 0}
+    #success
+    return {'success': 'yes'}
 
 
 @app.route("/get-nearby-artists", methods=["GET"])
@@ -72,6 +65,32 @@ def get_nearby_artists():
 
     return {'artists': artists}
 
+@app.route("/get-artist-availability/<artist_id>", methods=['GET'])
+def get_artist_availability(artist_id):
+    cur = conn.cursor()
+    sqlQuery = "select * from availability where artist_id = %s"
+    cur.execute(sqlQuery, artist_id)
+    availabilities = cur.fetchall()
+    return {'response': availabilities}
+
+@app.route("/add-artist-availability/<artist_id>", methods=['POST'])
+def add_artist_availability(artist_id):
+    cur = conn.cursor()
+    sqlQuery = "select * from artist where id = %s"
+    cur.execute(sqlQuery, artist_id)
+    artist = cur.fetchone()
+    if artist:
+        sqlQuery = "INSERT INTO availability (artist_id, availability) VALUES (%s, %s)"
+        val = (artist_id, request.args.get('availability'))
+        try:
+            cur.execute(sqlQuery, val)
+            conn.commit()
+        except pymysql.IntegrityError:
+            return {'success': 'no'}
+    else:
+        return {'success': 'no artist with that id.'}
+
+    return {'success': 'yes'}
 
 if __name__ == "__main__":
     conn = pymysql.connect(
