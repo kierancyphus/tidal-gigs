@@ -82,7 +82,9 @@ def get_nearby_artists():
     artists = [make_artist_dict(artist) for artist in artists]
     artists = filter_genre(artists, request.args.get('genre'))
     artists = filter_type(artists, request.args.get('type'))
-    return {'artists': artists}
+    yes_match_artist = [artist for artist in artists if request.args.get("name") in artist["name"]]
+    no_match_artist = [artist for artist in artists if request.args.get("name") not in artist["name"]]
+    return {'artists': yes_match_artist + no_match_artist}
 
 @app.route("/get-artist-availability/<artist_id>", methods=['GET'])
 def get_artist_availability(artist_id):
