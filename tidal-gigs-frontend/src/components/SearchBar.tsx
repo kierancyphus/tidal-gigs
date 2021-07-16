@@ -203,7 +203,7 @@ const SearchBar: FC<SearchBarProps> = ({
     content: string,
   ) => {
     setGenre(content);
-    setOpenLocation(false);
+    setOpenGenre(false);
   };
 
   const handleCloseType = (
@@ -211,7 +211,7 @@ const SearchBar: FC<SearchBarProps> = ({
     content: string,
   ) => {
     setType(content);
-    setOpenLocation(false);
+    setOpenType(false);
   };
 
   return (
