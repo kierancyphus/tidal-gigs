@@ -86,6 +86,24 @@ def get_nearby_artists():
     no_match_artist = [artist for artist in artists if request.args.get("name") not in artist["name"]]
     return {'artists': yes_match_artist + no_match_artist}
 
+@app.route("/get-unique-cities", methods=["GET"])
+def get_unique_cities():
+    """Get unique cities"""
+    cur = conn.cursor()
+    # Update artist fields
+    cur.execute(f"select distinct city from artist;")
+    cities = cur.fetchall()
+    return {"unique_cities": cities}
+
+@app.route("/get-unique-genres", methods=["GET"])
+def get_unique_genres():
+    """Get unique genres"""
+    cur = conn.cursor()
+    # Update artist fields
+    cur.execute(f"select distinct genre from artist;")
+    genres = cur.fetchall()
+    return {"unique_genres": genres}
+
 @app.route("/get-artist-availability/<artist_id>", methods=['GET'])
 def get_artist_availability(artist_id):
     cur = conn.cursor()
