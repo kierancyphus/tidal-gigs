@@ -14,15 +14,30 @@ conn = pymysql.connect(
     db='tidalsurfartist',
 )
 
+def make_artist_dict(artist):
+    artist_dict = dict()
+    artist_dict["id"] = artist[0]
+    artist_dict["name"] = artist[1]
+    artist_dict["city"] = artist[2]
+    artist_dict["price"] = artist[3]
+    artist_dict["email"] = artist[4]
+    artist_dict["phone"] = artist[5]
+    artist_dict["website"] = artist[6]
+    artist_dict["rating"] = artist[7]
+    artist_dict["genre"] = artist[8]
+    artist_dict["booking_count"] = artist[9]
+    artist_dict["type"] = artist[10]
+    return artist_dict
+
 @cross_origin
 @app.route("/get-artist/<user_id>", methods=['GET'])
-def get_artists(user_id):
+def get_artist(user_id):
     # Initialize
     cur = conn.cursor()
     # Update artist fields
     cur.execute(f"select * from artist where id={user_id};")
     artist = cur.fetchone()
-    return {'response': artist}
+    return make_artist_dict(artist)
 
 @app.route("/add-artist", methods=['POST'])
 def add_artist():
@@ -56,13 +71,17 @@ def add_artist():
 def get_nearby_artists():
     """Find artists who live in same location based on name."""
 
-    def filter_genre():
-        pass
+    def filter_genre(artists, genre):
+        return [artist for artist in artists if artist["genre"] == genre]
+    def filter_type(artists, artist_type):
+        return [artist for artist in artists if artist["type"] == int(artist_type)]
     cur = conn.cursor()
     # Update artist fields
     cur.execute(f"select * from artist where city='{request.args.get('city')}';")
     artists = cur.fetchall()
-
+    artists = [make_artist_dict(artist) for artist in artists]
+    artists = filter_genre(artists, request.args.get('genre'))
+    artists = filter_type(artists, request.args.get('type'))
     return {'artists': artists}
 
 @app.route("/get-artist-availability/<artist_id>", methods=['GET'])

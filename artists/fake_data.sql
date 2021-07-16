@@ -160,7 +160,7 @@ INSERT INTO artist (id,
                     booking_count,
                     type)
 VALUES (
-    6,
+    21,
     "Justin Bieber",
     "TORONTO",
     100,

@@ -4,6 +4,7 @@ USE tidalsurfartist;
 
 CREATE USER IF NOT EXISTS 'user'@'localhost';
 GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfartist.* TO 'user'@'localhost';
+DROP TABLE artist;
 
 ALTER USER 'user'@'localhost' IDENTIFIED BY 'password';
 SET FOREIGN_KEY_CHECKS=0;
