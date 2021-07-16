@@ -1,9 +1,10 @@
 USE mysql;
+DROP DATABASE tidalsurfartist;
 CREATE DATABASE IF NOT EXISTS tidalsurfartist;
 USE tidalsurfartist;
 
 CREATE USER IF NOT EXISTS 'user'@'localhost';
-GRANT SELECT, INSERT, UPDATE, CREATE, ALTER ON tidalsurfartist.* TO 'user'@'localhost';
+GRANT SELECT, INSERT, UPDATE, CREATE, ALTER, DROP ON tidalsurfartist.* TO 'user'@'localhost';
 DROP TABLE artist;
 DROP TABLE availability;
 
