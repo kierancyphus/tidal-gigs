@@ -84,10 +84,11 @@ export interface ExtendedProfile extends Profile {
 }
 
 interface SearchResultsRowProps extends ExtendedProfile {
-  onClick: (name: string, url: string, genre: string) => void;
+  onClick: (name: string, url: string, genre: string, id: number) => void;
 }
 
 const SearchResultsRow: FC<SearchResultsRowProps> = ({
+  id,
   name,
   genre,
   url = 'replace me with something better',
@@ -101,7 +102,7 @@ const SearchResultsRow: FC<SearchResultsRowProps> = ({
   return (
     <ButtonBase
       className={classes.root}
-      onClick={() => onClick(name, url, genre)}
+      onClick={() => onClick(name, url, genre, id || 0)}
     >
       <Box className={classes.row}>
         <Box className={classes.icon}>

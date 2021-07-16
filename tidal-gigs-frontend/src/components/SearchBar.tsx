@@ -18,6 +18,7 @@ import NearMeIcon from '@material-ui/icons/NearMe';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import { useEffect } from 'react';
+import { getGenres, getLocations } from '../api/artists';
 
 const useStyles = makeStyles({
   root: {
@@ -125,15 +126,15 @@ const useStyles = makeStyles({
   }),
 });
 
-const locationOptions: string[] = [
-  'Toronto, Ontario',
-  'Honolulu, Hawawii',
-  'New York City, New York',
-  'Atlanta, Georgia',
-  'Houston, Texas',
-];
-const genreOptions: string[] = ['R&B', 'Hip Hop', 'Country', 'Metal', 'Indie'];
-const typeOptions: string[] = ['Band', 'Solo'];
+// const locationOptions: string[] = [
+//   'Toronto, Ontario',
+//   'Honolulu, Hawawii',
+//   'New York City, New York',
+//   'Atlanta, Georgia',
+//   'Houston, Texas',
+// ];
+// const genreOptions: string[] = ['R&B', 'Hip Hop', 'Country', 'Metal', 'Indie'];
+const typeOptions: string[] = ['Group', 'Band', 'Solo'];
 interface SearchBarProps {
   location: string;
   genre: string;
@@ -173,9 +174,8 @@ const SearchBar: FC<SearchBarProps> = ({
 
   useEffect(() => {
     // TODO: update this to make api calls
-
-    setLocations(locationOptions);
-    setGenres(genreOptions);
+    getLocations().then(locationOptions => setLocations(locationOptions));
+    getGenres().then(genreOptions => setGenres(genreOptions));
   }, []);
 
   const handleToggleLocation = () => {

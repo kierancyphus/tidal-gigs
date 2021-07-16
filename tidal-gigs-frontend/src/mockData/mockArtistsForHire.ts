@@ -10,6 +10,16 @@ import Katie from '../assets/profiles/Katie.png';
 import Kieran from '../assets/profiles/Kieran.png';
 import { HiredProfile } from '../components/MainPage';
 
+export const mockUrls: string[] = [
+  Beyonce,
+  Jack,
+  Jay,
+  Johnny,
+  Judy,
+  Katie,
+  Kieran,
+];
+
 export const mockLocalArtistsForHire: Profile[] = [
   {
     url: Beyonce,

@@ -14,6 +14,16 @@ conn = pymysql.connect(
     db='tidalsurfartist',
 )
 
+
+def get_connection():
+    return pymysql.connect(
+        host='localhost',
+        user='user',
+        password="password",
+        db='tidalsurfartist',
+    )
+
+
 def make_artist_dict(artist):
     artist_dict = dict()
     artist_dict["id"] = artist[0]
@@ -29,19 +39,23 @@ def make_artist_dict(artist):
     artist_dict["type"] = artist[10]
     return artist_dict
 
+
 @cross_origin
 @app.route("/get-artist/<user_id>", methods=['GET'])
 def get_artist(user_id):
     # Initialize
+    conn = get_connection()
     cur = conn.cursor()
     # Update artist fields
     cur.execute(f"select * from artist where id={user_id};")
     artist = cur.fetchone()
     return make_artist_dict(artist)
 
+
 @app.route("/add-artist", methods=['POST'])
 def add_artist():
     # Initialize
+    conn = get_connection()
     cur = conn.cursor()
 
     # Insert Data
@@ -70,39 +84,53 @@ def add_artist():
 @app.route("/get-nearby-artists", methods=["GET"])
 def get_nearby_artists():
     """Find artists who live in same location based on name."""
-
+    conn = get_connection()
     def filter_genre(artists, genre):
+        if genre is None:
+            return artists
         return [artist for artist in artists if artist["genre"] == genre]
     def filter_type(artists, artist_type):
+        if artist_type is None:
+            return artists
         return [artist for artist in artists if artist["type"] == int(artist_type)]
+    def filter_city(artists, city):
+        if city is None:
+            return artists
+        return [artist for artist in artists if artist["city"] == city]
     cur = conn.cursor()
     # Update artist fields
-    cur.execute(f"select * from artist where city='{request.args.get('city')}';")
+    cur.execute(f"select * from artist")
     artists = cur.fetchall()
     artists = [make_artist_dict(artist) for artist in artists]
+    artists = filter_city(artists, request.args.get('city'))
     artists = filter_genre(artists, request.args.get('genre'))
     artists = filter_type(artists, request.args.get('type'))
-    yes_match_artist = [artist for artist in artists if request.args.get("name") in artist["name"]]
-    no_match_artist = [artist for artist in artists if request.args.get("name") not in artist["name"]]
-    return {'artists': yes_match_artist + no_match_artist}
+    yes_match_artist = [artist for artist in artists if request.args.get("name", '') in artist["name"]]
+    no_match_artist = [artist for artist in artists if request.args.get("name", '') not in artist["name"]]
+    return {'artists': yes_match_artist}
+
 
 @app.route("/get-unique-cities", methods=["GET"])
 def get_unique_cities():
     """Get unique cities"""
+    conn = get_connection()
     cur = conn.cursor()
     # Update artist fields
     cur.execute(f"select distinct city from artist;")
     cities = cur.fetchall()
     return {"unique_cities": cities}
 
+
 @app.route("/get-unique-genres", methods=["GET"])
 def get_unique_genres():
     """Get unique genres"""
+    conn = get_connection()
     cur = conn.cursor()
     # Update artist fields
     cur.execute(f"select distinct genre from artist;")
     genres = cur.fetchall()
     return {"unique_genres": genres}
+
 
 @app.route("/get-artist-availability/<artist_id>", methods=['GET'])
 def get_artist_availability(artist_id):
@@ -111,6 +139,7 @@ def get_artist_availability(artist_id):
     cur.execute(sqlQuery, artist_id)
     availabilities = cur.fetchall()
     return {'response': availabilities}
+
 
 @app.route("/add-artist-availability/<artist_id>", methods=['POST'])
 def add_artist_availability(artist_id):
@@ -130,6 +159,7 @@ def add_artist_availability(artist_id):
         return {'success': 'no artist with that id.'}
 
     return {'success': 'yes'}
+
 
 if __name__ == "__main__":
     conn = pymysql.connect(

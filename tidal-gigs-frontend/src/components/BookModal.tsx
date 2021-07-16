@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { mockTimes } from '../mockData/mockArtistsForHire';
 import EventIcon from '@material-ui/icons/Event';
 import { Profile } from './LocalArtistsForHire';
+import { getTimes } from '../api/artists';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -118,6 +119,7 @@ const BookModal: FC<BookModalProps> = ({
   name,
   url,
   genre,
+  id,
   onClose,
   handleSubmit,
 }) => {
@@ -131,18 +133,13 @@ const BookModal: FC<BookModalProps> = ({
   const [amount, setAmount] = useState<number>();
 
   useEffect(() => {
-    setAvailableTimes(mockTimes);
+    getTimes(id || 0).then(times => setAvailableTimes(times));
   }, []);
 
   const handleClick = (time: string) => {
     setOpenDropdown(false);
     setTime(time);
   };
-
-  // const handleSubmit = () => {
-  //   console.log(time, amount);
-  //   onClose();
-  // };
 
   return (
     <Modal open={open} className={classes.modal} onClose={onClose}>

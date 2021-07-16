@@ -27,6 +27,7 @@ import {
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useEffect } from 'react';
+import { getNearbyArtists } from '../api/artists';
 
 const MainPageSidebar: FC = () => (
   <SidebarContainer>
@@ -130,6 +131,7 @@ const MainPage: FC = () => {
     name: '',
     url: '',
     genre: '',
+    id: 0,
   });
 
   const [hired, setHired] = useState<HiredProfile[]>([]);
@@ -146,19 +148,14 @@ const MainPage: FC = () => {
     setSearchResults([]);
     setPage(Page.SEARCH);
 
-    // mock searching
-    setSearchStatus(SearchStatus.SEARCHING);
-
-    // TODO: replace
-    setTimeout(() => {
-      setSearchStatus(SearchStatus.COMPLETED);
-      setSearchResults(mockSearchResults);
-    }, 2000);
+    setSearchStatus(SearchStatus.SEARCHING);    
+    getNearbyArtists(genre, type, location,searchQuery).then(result => setSearchResults(result));
+    setSearchStatus(SearchStatus.COMPLETED);
   };
 
-  const handleSelection = (name: string, url: string, genre: string) => {
+  const handleSelection = (name: string, url: string, genre: string, id: number) => {
     setOpenModal(true);
-    setSelected({ name, url, genre });
+    setSelected({ name, url, genre, id });
   };
 
   const handleConfirmation = (time: string, amount: number) => {
@@ -238,7 +235,7 @@ const MainPage: FC = () => {
       </Backdrop>
 
       {page != Page.EXPLORE && (
-        <>
+        <Box style={{minHeight: '75vh'}}>
           <SearchResults profiles={searchResults} onClick={handleSelection} />
           <BookModal
             open={openModal}
@@ -246,7 +243,8 @@ const MainPage: FC = () => {
             handleSubmit={handleConfirmation}
             {...selected}
           />
-        </>
+        </Box>
+          
       )}
     </Box>
   );

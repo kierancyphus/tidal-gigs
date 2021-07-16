@@ -70,7 +70,7 @@ const useStyles = makeStyles({
 
 interface SearchResultsProps {
   profiles: ExtendedProfile[];
-  onClick: (name: string, url: string, genre: string) => void;
+  onClick: (name: string, url: string, genre: string, id: number) => void;
 }
 
 const SearchResults: FC<SearchResultsProps> = ({ profiles, onClick }) => {
