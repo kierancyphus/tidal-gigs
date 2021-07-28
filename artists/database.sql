@@ -23,7 +23,9 @@ website VARCHAR(200),
 rating INTEGER NOT NULL,
 genre VARCHAR(20),
 booking_count INTEGER NOT NULL,
-type INTEGER NOT NULL -- 1 for group 0 for solo
+type INTEGER NOT NULL, -- 1 for group 0 for solo
+image TEXT,
+instrument VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS availability(
