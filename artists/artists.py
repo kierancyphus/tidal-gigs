@@ -37,6 +37,8 @@ def make_artist_dict(artist):
     artist_dict["genre"] = artist[8]
     artist_dict["booking_count"] = artist[9]
     artist_dict["type"] = artist[10]
+    artist_dict["image"] = artist[11]
+    artist_dict["instrument"] = artist[12]
     return artist_dict
 
 
@@ -59,7 +61,7 @@ def add_artist():
     cur = conn.cursor()
 
     # Insert Data
-    sqlQuery = "INSERT INTO artist (name, city, price, email, phone, website, rating, genre, booking_count, type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s )"
+    sqlQuery = "INSERT INTO artist (name, city, price, email, phone, website, rating, genre, booking_count, type, image, instrument) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s )"
     val = (request.args.get('name'),
            request.args.get('city'),
            request.args.get('price', None),
@@ -69,7 +71,9 @@ def add_artist():
            request.args.get('rating', None),
            request.args.get('genre', None),
            request.args.get('booking_count', None),
-           request.args.get('type', None))
+           request.args.get('type', None),
+           request.args.get('image', None),
+           request.args.get('instrument', None))
     try:
 
         cur.execute(sqlQuery, val)
