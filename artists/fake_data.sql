@@ -356,7 +356,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     12,
     "Frank Ocean",
@@ -368,7 +370,9 @@ VALUES (
     5,
     "RNB",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Frank_Ocean#/media/File:Frank_Ocean_December_2011_(cropped).jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -381,7 +385,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     13,
     "Snoop Dogg",
@@ -393,7 +399,9 @@ VALUES (
     5,
     "HIPHOP",
     11,
-    0
+    0,
+    "hhttps://en.wikipedia.org/wiki/Snoop_Dogg#/media/File:Snoop_Dogg_2019_by_Glenn_Francis.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -406,7 +414,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     14,
     "Beck",
@@ -418,7 +428,9 @@ VALUES (
     5,
     "INDIE",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Beck#/media/File:BeckMSG190718-13_(47065153261)_(cropped).jpg",
+    "Voice, guitar, keyboard"
 );
 
 INSERT INTO artist (id,
@@ -431,7 +443,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     15,
     "Maroon 5",
@@ -443,7 +457,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Maroon_5#/media/File:Maroon_5_2016.jpg",
+    "Voice, guitar, keyboard, drums, bass"
 );
 
 INSERT INTO artist (id,
@@ -456,7 +472,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     16,
     "Anderson Paak",
@@ -468,7 +486,9 @@ VALUES (
     5,
     "RNB",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Anderson_.Paak#/media/File:Anderson_.Paak_July_2016.jpg",
+    "Voice, drums"
 );
 
 INSERT INTO artist (id,
@@ -481,7 +501,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     17,
     "Spice Girls",
@@ -493,7 +515,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Spice_Girls#/media/File:Spice_Girls_live_West_MacLaren_1997.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -506,7 +530,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     18,
     "The 1975",
@@ -518,7 +544,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/The_1975#/media/File:The_1975_2020_.jpg",
+    "Voice, guitar, bass, saxophone, drums"
 );
 
 INSERT INTO artist (id,
@@ -531,7 +559,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     19,
     "STORMZY",
@@ -543,7 +573,9 @@ VALUES (
     5,
     "HIPHOP",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Stormzy#/media/File:Stormzy_-_Openair_Frauenfeld_2019_02.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -556,7 +588,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     20,
     "Kero Kero Bonito",
@@ -568,11 +602,10 @@ VALUES (
     5,
     "INDIE",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Kero_Kero_Bonito#/media/File:Kero_kero_indietracks_2019.jpg",
+    "Voice, Drums, Keyboard"
 );
-
-
---ADDING MOCK DATA INTO AVAILABILITIES
 
 INSERT INTO availability (id, artist_id, availability) VALUES (1,1, '2021-07-20');
 INSERT INTO availability (id, artist_id, availability) VALUES (2,1, '2021-07-21');
