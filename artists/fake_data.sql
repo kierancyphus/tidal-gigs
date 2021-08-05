@@ -603,7 +603,7 @@ VALUES (
     "INDIE",
     11,
     1,
-    "https://static.wikia.nocookie.net/kerokerobonito/images/e/e2/Bonito_Generation.jpg/revision/latest/top-crop/width/360/height/450?cb=20170522005230",
+    "https://www.famousbirthdays.com/faces/perry-sarah-image.jpg",
     "Voice, Drums, Keyboard"
 );
 
