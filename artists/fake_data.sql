@@ -8,7 +8,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     1,
     "Jay Z",
@@ -20,7 +22,9 @@ VALUES (
     5,
     "HIPHOP",
     444,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/9/9c/Jay-Z_%40_Shawn_%27Jay-Z%27_Carter_Foundation_Carnival_%28crop_2%29.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -33,7 +37,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     2,
     "Beyonce",
@@ -45,7 +51,9 @@ VALUES (
     5,
     "POP",
     10,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/1/17/Beyonc%C3%A9_at_The_Lion_King_European_Premiere_2019.png",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -58,7 +66,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     3,
     "East Flatbush Project",
@@ -70,7 +80,9 @@ VALUES (
     4,
     "HIPHOP",
     23,
-    1
+    0,
+    "https://img.discogs.com/gwrITLCdlV8uAdneJr5qcu2escQ=/340x292/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-2195-1406567661-1597.jpeg.jpg",
+    "DJ"
 );
 
 INSERT INTO artist (id,
@@ -83,7 +95,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     4,
     "King Princess",
@@ -95,7 +109,9 @@ VALUES (
     4,
     "INDIE",
     11,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/e/e8/King_Princess_2018.png",
+    "Guitar"
 );
 
 INSERT INTO artist (id,
@@ -108,7 +124,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     5,
     "Talib Kweli",
@@ -120,7 +138,9 @@ VALUES (
     4,
     "HIPHOP",
     100,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Talib_Kweli_-_Ilosaarirock_2012.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -133,7 +153,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     6,
     "Drake",
@@ -145,7 +167,9 @@ VALUES (
     5,
     "HIPHOP",
     11,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/2/28/Drake_July_2016.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -158,7 +182,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     21,
     "Justin Bieber",
@@ -170,7 +196,9 @@ VALUES (
     5,
     "POP",
     1000,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/d/da/Justin_Bieber_in_2015.jpg",
+    "Guitar"
 );
 
 INSERT INTO artist (id,
@@ -183,7 +211,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     7,
     "Alvvays",
@@ -195,7 +225,9 @@ VALUES (
     5,
     "INDIE",
     110,
-    1
+    1,
+    "https://upload.wikimedia.org/wikipedia/commons/d/d9/Alvvays_14860192853.jpg",
+    "Guitar and drums"
 );
 
 INSERT INTO artist (id,
@@ -208,7 +240,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     8,
     "Daniel Caesar",
@@ -220,7 +254,9 @@ VALUES (
     5,
     "RNB",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Daniel_Caesar#/media/File:Daniel_Caesar_-_Coachella_2018.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -233,7 +269,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     9,
     "Nav",
@@ -245,7 +283,9 @@ VALUES (
     1,
     "HIPHOP",
     11,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/8/86/Nav_Denver_Co_May_7th.jpg",
+    "Autotune"
 );
 
 INSERT INTO artist (id,
@@ -258,7 +298,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     10,
     "BadBadNotGood",
@@ -270,7 +312,9 @@ VALUES (
     5,
     "RNB",
     11,
-    1
+    1,
+    "https://upload.wikimedia.org/wikipedia/commons/a/a3/BadBadNotGood2017.jpg",
+    "Saxophone, Guitar, Keyboard, Drums"
 );
 
 INSERT INTO artist (id,
@@ -283,7 +327,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     11,
     "Phoebe Bridgers",
@@ -295,7 +341,9 @@ VALUES (
     5,
     "INDIE",
     11,
-    0
+    0,
+    "https://upload.wikimedia.org/wikipedia/commons/b/b6/Phoebe_Bridgers_%2841599189180%29_%28cropped%29.jpg",
+    "Guitar"
 );
 
 INSERT INTO artist (id,
@@ -308,7 +356,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     12,
     "Frank Ocean",
@@ -320,7 +370,9 @@ VALUES (
     5,
     "RNB",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Frank_Ocean#/media/File:Frank_Ocean_December_2011_(cropped).jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -333,7 +385,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     13,
     "Snoop Dogg",
@@ -345,7 +399,9 @@ VALUES (
     5,
     "HIPHOP",
     11,
-    0
+    0,
+    "hhttps://en.wikipedia.org/wiki/Snoop_Dogg#/media/File:Snoop_Dogg_2019_by_Glenn_Francis.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -358,7 +414,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     14,
     "Beck",
@@ -370,7 +428,9 @@ VALUES (
     5,
     "INDIE",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Beck#/media/File:BeckMSG190718-13_(47065153261)_(cropped).jpg",
+    "Voice, guitar, keyboard"
 );
 
 INSERT INTO artist (id,
@@ -383,7 +443,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     15,
     "Maroon 5",
@@ -395,7 +457,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Maroon_5#/media/File:Maroon_5_2016.jpg",
+    "Voice, guitar, keyboard, drums, bass"
 );
 
 INSERT INTO artist (id,
@@ -408,7 +472,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     16,
     "Anderson Paak",
@@ -420,7 +486,9 @@ VALUES (
     5,
     "RNB",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Anderson_.Paak#/media/File:Anderson_.Paak_July_2016.jpg",
+    "Voice, drums"
 );
 
 INSERT INTO artist (id,
@@ -433,7 +501,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     17,
     "Spice Girls",
@@ -445,7 +515,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Spice_Girls#/media/File:Spice_Girls_live_West_MacLaren_1997.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -458,7 +530,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     18,
     "The 1975",
@@ -470,7 +544,9 @@ VALUES (
     5,
     "POP",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/The_1975#/media/File:The_1975_2020_.jpg",
+    "Voice, guitar, bass, saxophone, drums"
 );
 
 INSERT INTO artist (id,
@@ -483,7 +559,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     19,
     "STORMZY",
@@ -495,7 +573,9 @@ VALUES (
     5,
     "HIPHOP",
     11,
-    0
+    0,
+    "https://en.wikipedia.org/wiki/Stormzy#/media/File:Stormzy_-_Openair_Frauenfeld_2019_02.jpg",
+    "Voice"
 );
 
 INSERT INTO artist (id,
@@ -508,7 +588,9 @@ INSERT INTO artist (id,
                     rating,
                     genre,
                     booking_count,
-                    type)
+                    type,
+                    image,
+                    instrument)
 VALUES (
     20,
     "Kero Kero Bonito",
@@ -520,11 +602,10 @@ VALUES (
     5,
     "INDIE",
     11,
-    1
+    1,
+    "https://en.wikipedia.org/wiki/Kero_Kero_Bonito#/media/File:Kero_kero_indietracks_2019.jpg",
+    "Voice, Drums, Keyboard"
 );
-
-
---ADDING MOCK DATA INTO AVAILABILITIES
 
 INSERT INTO availability (id, artist_id, availability) VALUES (1,1, '2021-07-20');
 INSERT INTO availability (id, artist_id, availability) VALUES (2,1, '2021-07-21');
