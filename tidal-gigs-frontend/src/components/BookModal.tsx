@@ -134,7 +134,7 @@ const BookModal: FC<BookModalProps> = ({
 
   useEffect(() => {
     getTimes(id || 0).then(times => setAvailableTimes(times));
-  }, []);
+  }, [id]);
 
   const handleClick = (time: string) => {
     setOpenDropdown(false);

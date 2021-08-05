@@ -27,6 +27,7 @@ interface ContactInfo {
 }
 
 export const getArtist = async (artistId: number) => {
+  // this is unused (?)
   try {
     console.log('within api');
     const response = await axios.get<User>(
@@ -60,14 +61,16 @@ export const getNearbyArtists = async (
   interface Temp extends ExtendedProfile {
     city: string;
     type: number;
+    image: string;
   }
   const response = await axios.get<{ artists: Temp[] }>(url);
+  console.log(response.data);
   return response.data.artists.map((artist, index) => ({
     ...artist,
     location: artist.city,
-    instrument: 'Banjo',
+    instrument: artist.instrument,
     group: artist.type === 0 ? 'Solo' : 'Band',
-    url: mockUrls[index % mockUrls.length],
+    url: artist.image,
   }));
 };
 
@@ -86,8 +89,9 @@ export const getLocations = async () => {
 };
 
 export const getTimes = async (id: number) => {
-  const response = await axios.get<{ response: string[] }>(
-    `http://localhost:5000/get-artist-availability/${id}`,
-  );
-  return response.data.response;
+  const url = `http://localhost:5000/get-artist-availability/${id}`;
+  const response = await axios.get<{ response: string[] }>(url);
+  console.log(url);
+  console.log(response.data.response);
+  return response.data.response.map(data => data[2]);
 };

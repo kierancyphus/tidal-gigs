@@ -41,11 +41,24 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     marginRight: theme.spacing(5),
+    maxHeight: theme.spacing(100),
+    maxWidth: theme.spacing(100),
   }),
   profileContainer: (theme: Theme) => ({
     display: 'flex',
     marginTop: theme.spacing(2),
     width: theme.spacing(100),
+  }),
+  image: (theme: Theme) => ({
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+    borderRadius: theme.spacing(10),
+  }),
+  fit: (theme: Theme) => ({
+    width: '100%',
+    height: '100%',
+    borderRadius: theme.spacing(10),
+    objectFit: 'cover',
   }),
 });
 
@@ -64,7 +77,10 @@ const LocalArtistsForHire: FC<LocalArtistsForHireProps> = ({ data, title }) => {
       <Box className={classes.profileContainer}>
         {data.map(({ url, name, genre }) => (
           <Box key={url + name + genre} className={classes.profile}>
-            <img src={url} />
+            <Box className={classes.image}>
+              <img src={url} className={classes.fit} />
+            </Box>
+
             <Box mt={2}>
               <Typography variant="subtitle1">{name}</Typography>
             </Box>
