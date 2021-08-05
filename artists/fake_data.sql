@@ -255,7 +255,7 @@ VALUES (
     "RNB",
     11,
     0,
-    "https://en.wikipedia.org/wiki/Daniel_Caesar#/media/File:Daniel_Caesar_-_Coachella_2018.jpg",
+    "https://i.guim.co.uk/img/media/c024b2ff8b180a5fa17d3eaee3d344a9ee973ab5/0_104_2207_1324/master/2207.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=b7ba4a79f79ebc8a3ac036a583b27253",
     "Voice"
 );
 
@@ -371,7 +371,7 @@ VALUES (
     "RNB",
     11,
     0,
-    "https://en.wikipedia.org/wiki/Frank_Ocean#/media/File:Frank_Ocean_December_2011_(cropped).jpg",
+    "https://static01.nyt.com/images/2016/11/20/arts/20CARAMANICA/20CARAMANICA-superJumbo.jpg",
     "Voice"
 );
 
@@ -400,7 +400,7 @@ VALUES (
     "HIPHOP",
     11,
     0,
-    "hhttps://en.wikipedia.org/wiki/Snoop_Dogg#/media/File:Snoop_Dogg_2019_by_Glenn_Francis.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/1/17/Snoop_Dogg_2019_by_Glenn_Francis.jpg",
     "Voice"
 );
 
@@ -429,7 +429,7 @@ VALUES (
     "INDIE",
     11,
     0,
-    "https://en.wikipedia.org/wiki/Beck#/media/File:BeckMSG190718-13_(47065153261)_(cropped).jpg",
+    "https://imgix.bustle.com/mic/ptika3il407cliwiudpmhfhybyoy68ybgs3grm7yopkyvbxgf6xcsvochljxl3qj.jpg?w=1020&h=576&fit=crop&crop=faces&auto=format%2Ccompress",
     "Voice, guitar, keyboard"
 );
 
@@ -458,7 +458,7 @@ VALUES (
     "POP",
     11,
     1,
-    "https://en.wikipedia.org/wiki/Maroon_5#/media/File:Maroon_5_2016.jpg",
+    "https://static.billboard.com/files/media/maroon-5-2010-billboard-1548-compressed.jpg",
     "Voice, guitar, keyboard, drums, bass"
 );
 
@@ -487,7 +487,7 @@ VALUES (
     "RNB",
     11,
     0,
-    "https://en.wikipedia.org/wiki/Anderson_.Paak#/media/File:Anderson_.Paak_July_2016.jpg",
+    "https://i.guim.co.uk/img/media/b50fce564346d5fd77a656c6f8dbebddd005c1d8/0_153_7242_4345/master/7242.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=6fa761ec76ac2ca6f2cd431b852052b7",
     "Voice, drums"
 );
 
@@ -516,7 +516,7 @@ VALUES (
     "POP",
     11,
     1,
-    "https://en.wikipedia.org/wiki/Spice_Girls#/media/File:Spice_Girls_live_West_MacLaren_1997.jpg",
+    "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F06%2F11%2Fspice-girls.jpg&q=85",
     "Voice"
 );
 
@@ -545,7 +545,7 @@ VALUES (
     "POP",
     11,
     1,
-    "https://en.wikipedia.org/wiki/The_1975#/media/File:The_1975_2020_.jpg",
+    "https://www.nme.com/wp-content/uploads/2020/05/1975-big-read-6@2160x2700.jpg",
     "Voice, guitar, bass, saxophone, drums"
 );
 
@@ -574,7 +574,7 @@ VALUES (
     "HIPHOP",
     11,
     0,
-    "https://en.wikipedia.org/wiki/Stormzy#/media/File:Stormzy_-_Openair_Frauenfeld_2019_02.jpg",
+    "https://yt3.ggpht.com/ytc/AKedOLROq4gWX5Nn42AnX8nuvru1CER2GrI-7mS1wKkrgw=s900-c-k-c0x00ffffff-no-rj",
     "Voice"
 );
 
@@ -603,9 +603,10 @@ VALUES (
     "INDIE",
     11,
     1,
-    "https://en.wikipedia.org/wiki/Kero_Kero_Bonito#/media/File:Kero_kero_indietracks_2019.jpg",
+    "https://static.wikia.nocookie.net/kerokerobonito/images/e/e2/Bonito_Generation.jpg/revision/latest/top-crop/width/360/height/450?cb=20170522005230",
     "Voice, Drums, Keyboard"
 );
+
 
 INSERT INTO availability (id, artist_id, availability) VALUES (1,1, '2021-07-20');
 INSERT INTO availability (id, artist_id, availability) VALUES (2,1, '2021-07-21');
