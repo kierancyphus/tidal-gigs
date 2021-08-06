@@ -47,7 +47,6 @@ const useStyles = makeStyles({
   profileContainer: (theme: Theme) => ({
     display: 'flex',
     marginTop: theme.spacing(2),
-    width: theme.spacing(100),
   }),
   image: (theme: Theme) => ({
     width: theme.spacing(20),

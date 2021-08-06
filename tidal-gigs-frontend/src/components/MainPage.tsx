@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     height: theme.spacing(4),
   }),
   spacer: (theme: Theme) => ({
-    marginBottom: theme.spacing(5),
+    marginBottom: theme.spacing(6),
   }),
   title: (theme: Theme) => ({
     fontFamily: 'Nationale',
